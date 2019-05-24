@@ -14,6 +14,8 @@
     <button mat-stroked-button
             *ngFor="let but of buttonList"
             [matTooltip]="but.title"
+            [disabled]="but.clicked"
+            (click)="disableButton(but)"
     >
         {{but.text}}
     </button>
