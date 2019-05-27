@@ -5,18 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './angular-material';
-import {MatTooltipModule} from '@angular/material';
+import {MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {FormsModule} from '@angular/forms';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToolbarComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MaterialModule,
-        MatTooltipModule
+        MatTooltipModule,
+        FormsModule,
+        MatToolbarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<app-toolbar (buttonClick)="changeVar($event)"></app-toolbar>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div style="text-align:center">
@@ -19,6 +21,21 @@
     >
         {{but.text}}
     </button>
+</div>
+
+<div class="input-container">
+    <label>
+        <input
+            type="text"
+            class="mat-input-element"
+            [(ngModel)]="someVar">
+    </label>
+</div>
+
+<div class="some-paragraph">
+    <p>
+        {{someVar}}
+    </p>
 </div>
 
 <ul>

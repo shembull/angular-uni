@@ -14,6 +14,7 @@ export class AppComponent {
             {title: 'some', text: 'paar', clicked: false},
             {title: 'Tooltips', text: 'Buttons', clicked: false}
             ];
+    someVar = 'Text';
     public changeTitle() {
           this.title += 'lol';
         // tslint:disable-next-line:prefer-for-of
@@ -29,5 +30,9 @@ export class AppComponent {
     }
     public log(msg) {
         console.log(msg);
+    }
+
+    changeVar($event: { buttonTitle: string }) {
+        this.someVar = $event.buttonTitle;
     }
 }
