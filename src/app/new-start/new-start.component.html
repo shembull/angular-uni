@@ -1,3 +1,12 @@
-<p>
-  new-start works!
-</p>
+<mat-list>
+    <mat-list-item mat-list-item>
+        Hi, I'm a Item
+    </mat-list-item>
+    <mat-list-item mat-list-item>
+        <button mat-flat-button color="primary" (click)="printUser()">Im a Button</button>
+        Hi, I'm another Item
+    </mat-list-item>
+    <mat-list-item mat-list-item
+                   *ngFor="let user of users"
+    >{{user.fname}} {{user.lname}} {{user.phone}}</mat-list-item>
+</mat-list>
