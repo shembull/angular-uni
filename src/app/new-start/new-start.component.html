@@ -1,12 +1,21 @@
-<mat-list>
-    <mat-list-item mat-list-item>
-        Hi, I'm a Item
-    </mat-list-item>
-    <mat-list-item mat-list-item>
-        <button mat-flat-button color="primary" (click)="printUser()">Im a Button</button>
-        Hi, I'm another Item
-    </mat-list-item>
-    <mat-list-item mat-list-item
-                   *ngFor="let user of users"
-    >{{user.fname}} {{user.lname}} {{user.phone}}</mat-list-item>
-</mat-list>
+<table mat-table [dataSource]="tableData" class="mat-elevation-z10">
+    <ng-container matColumnDef="fname">
+        <th mat-header-cell *matHeaderCellDef> Vorname </th>
+        <td mat-cell *matCellDef="let user"> {{user.fname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lname">
+        <th mat-header-cell *matHeaderCellDef> Nachname </th>
+        <td mat-cell *matCellDef="let user"> {{user.lname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef> Telefon </th>
+        <td mat-cell *matCellDef="let user"> {{user.phone}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<button mat-stroked-button color="primary" (click)="printUser()">Print User Array</button>
+<app-user-add (userAdded)="updateData($event)"></app-user-add>

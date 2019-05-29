@@ -5,12 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './angular-material';
-import {MatIconModule, MatListModule, MatToolbarModule, MatTooltipModule} from '@angular/material';
+import {
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatTooltipModule
+} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
 import { NewStartComponent } from './new-start/new-start.component';
 import {PeopleService} from './services/people.service';
+import { UserAddComponent } from './new-start/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +27,7 @@ import {PeopleService} from './services/people.service';
     ToolbarComponent,
     TestComponent,
     NewStartComponent,
+    UserAddComponent,
   ],
     imports: [
         BrowserModule,
@@ -29,6 +39,9 @@ import {PeopleService} from './services/people.service';
         MatToolbarModule,
         MatIconModule,
         MatListModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
   providers: [PeopleService],
   bootstrap: [AppComponent]

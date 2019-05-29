@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {PeopleService, User} from '../services/people.service';
+import {PeopleService} from '../services/people.service';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,9 +18,5 @@ export class ToolbarComponent implements OnInit {
     }
     ngOnInit() {
       this.peopleService.people.subscribe(users => this.users = users);
-    }
-    addUser(): void {
-        this.users.push({fname: 'Franz', lname: 'Zahn', phone: 987654321});
-        this.peopleService.addUser(this.users);
     }
 }

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {PeopleService, User} from '../services/people.service';
+import {PeopleService} from '../services/people.service';
+import {MatTableDataSource} from '@angular/material';
+import {User} from '../classes/user';
 
 @Component({
   selector: 'app-new-start',
@@ -9,13 +11,15 @@ import {PeopleService, User} from '../services/people.service';
 })
 export class NewStartComponent implements OnInit {
     myParam: string;
-    users: User[];
+    userArray: User[];
+    tableData: MatTableDataSource<User> = new MatTableDataSource();
+    displayedColumns: string[] = ['fname', 'lname', 'phone'];
 
-  constructor(
-      private router: Router,
-      private route: ActivatedRoute,
-      private peopleService: PeopleService
-  ) { }
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private peopleService: PeopleService
+    ) { }
 
     ngOnInit() {
       this.route.params.subscribe(
@@ -23,9 +27,15 @@ export class NewStartComponent implements OnInit {
               this.myParam = params.urlParam;
           }
       );
-      this.peopleService.people.subscribe(users => this.users = users);
-  }
+      this.peopleService.people.subscribe(users => this.userArray = users);
+      this.tableData.data = this.userArray;
+    }
     printUser(): void {
-      console.log(this.users);
-  }
+        console.log(this.userArray);
+    }
+    updateData(user: User): void {
+        this.userArray.push(user);
+        this.peopleService.addUser(this.userArray);
+        this.tableData._updateChangeSubscription();
+    }
 }

@@ -1,0 +1,31 @@
+<form class="mat-form-field">
+    <mat-form-field class="user-add-form">
+        <input matInput
+               type="text"
+               placeholder="Vorname"
+               [(ngModel)]="user.fname"
+               [ngModelOptions]="{standalone: true}"
+        >
+    </mat-form-field>
+
+    <mat-form-field class="user-add-form">
+        <input matInput
+               type="text"
+               placeholder="Nachname"
+               [(ngModel)]="user.lname"
+               [ngModelOptions]="{standalone: true}"
+        >
+    </mat-form-field>
+
+    <mat-form-field class="user-add-form">
+        <input matInput
+               type="tel"
+               placeholder="Telefon"
+               [(ngModel)]="user.phone"
+               [ngModelOptions]="{standalone: true}"
+        >
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="primary" (click)="addUser()">
+        Hinzufügen
+    </button>
+</form>
