@@ -39,4 +39,8 @@ export class StartComponent implements OnInit {
         // Update table because the subscription dose not work due to performance reasons
         this.tableData._updateChangeSubscription();
     }
+
+    showUser(fname: string, lname: string) {
+
+    }
 }

@@ -1,0 +1,16 @@
+<div class="mat-card-container">
+    <mat-card class="user-card-single mat-elevation-z10">
+        <mat-card-header >
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>{{fname}} {{lname}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://picsum.photos/400" alt="random image">
+        <mat-card-content>
+            <p>Name: {{fname}} {{lname}}</p>
+            <p>Telefon: {{phone}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <a routerLink="/"><button mat-raised-button>Got It!</button></a>
+        </mat-card-actions>
+    </mat-card>
+</div>

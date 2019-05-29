@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './angular-material';
 import {
+    MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -20,6 +21,7 @@ import { TestComponent } from './test/test.component';
 import { StartComponent } from './start/start.component';
 import {PeopleService} from './services/people.service';
 import { UserAddComponent } from './start/user-add/user-add.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { UserAddComponent } from './start/user-add/user-add.component';
     TestComponent,
     StartComponent,
     UserAddComponent,
+    UserPageComponent,
   ],
     imports: [
         BrowserModule,
@@ -42,6 +45,7 @@ import { UserAddComponent } from './start/user-add/user-add.component';
         MatTableModule,
         MatFormFieldModule,
         MatInputModule,
+        MatCardModule,
     ],
   providers: [PeopleService],
   bootstrap: [AppComponent]
