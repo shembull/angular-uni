@@ -12,10 +12,6 @@ export class UserAddComponent implements OnInit {
     constructor() { }
     ngOnInit() {
     }
-    print($event: MouseEvent) {
-        console.log($event);
-    }
-
     addUser() {
         this.userAdded.emit(this.user);
     }

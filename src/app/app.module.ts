@@ -17,16 +17,16 @@ import {
 import {FormsModule} from '@angular/forms';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
-import { NewStartComponent } from './new-start/new-start.component';
+import { StartComponent } from './start/start.component';
 import {PeopleService} from './services/people.service';
-import { UserAddComponent } from './new-start/user-add/user-add.component';
+import { UserAddComponent } from './start/user-add/user-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     TestComponent,
-    NewStartComponent,
+    StartComponent,
     UserAddComponent,
   ],
     imports: [

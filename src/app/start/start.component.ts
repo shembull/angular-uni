@@ -6,10 +6,10 @@ import {User} from '../classes/user';
 
 @Component({
   selector: 'app-new-start',
-  templateUrl: './new-start.component.html',
-  styleUrls: ['./new-start.component.css']
+  templateUrl: './start.component.html',
+  styleUrls: ['./start.component.css']
 })
-export class NewStartComponent implements OnInit {
+export class StartComponent implements OnInit {
     myParam: string;
     userArray: User[];
     tableData: MatTableDataSource<User> = new MatTableDataSource();
