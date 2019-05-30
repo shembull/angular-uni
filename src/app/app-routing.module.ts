@@ -5,7 +5,7 @@ import {UserPageComponent} from './user-page/user-page.component';
 
 const routes: Routes = [
     {path: '', component: StartComponent},
-    {path: 'user/:fname/:lname/:phone', component: UserPageComponent}
+    {path: 'user/:id', component: UserPageComponent}
 ];
 
 @NgModule({
