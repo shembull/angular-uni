@@ -8,10 +8,10 @@ import {User} from '../classes/user';
 export class PeopleService {
     private peopleSubject = new BehaviorSubject<User[]>(
         [
-        {fname: 'Niklas', lname: 'Weber', phone: 132456879},
-        {fname: 'Max', lname: 'Weigt', phone: 132456879},
-        {fname: 'Fabian', lname: 'Bluhmki', phone: 132456879},
-        {fname: 'Mark', lname: 'Gilgen', phone: 132456879}
+        new User('Niklas', 'Weber', '123456789'),
+        new User('Max', 'Weigt', '123456789'),
+        new User('Fabian', 'Bluhmki', '123456789'),
+        new User('Mark', 'Gilgen', '123456789')
         ]
     );
     people = this.peopleSubject.asObservable();

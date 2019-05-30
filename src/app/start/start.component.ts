@@ -35,12 +35,9 @@ export class StartComponent implements OnInit {
     }
     updateData(user: User): void {
         this.userArray.push(user);
+        console.log(this.userArray);
         this.peopleService.addUser(this.userArray);
         // Update table because the subscription dose not work due to performance reasons
         this.tableData._updateChangeSubscription();
-    }
-
-    showUser(fname: string, lname: string) {
-
     }
 }

@@ -8,11 +8,12 @@ import {User} from '../../classes/user';
 })
 export class UserAddComponent implements OnInit {
     @Output() userAdded: EventEmitter<User> = new EventEmitter<User>();
-    private user: User = new User();
+    private user: User = new User('', '', '');
     constructor() { }
     ngOnInit() {
     }
     addUser() {
+        this.user.updateID();
         this.userAdded.emit(this.user);
     }
 }
