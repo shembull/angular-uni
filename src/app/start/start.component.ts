@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PeopleService} from '../services/people.service';
 import {MatTableDataSource} from '@angular/material';
 import {User} from '../classes/user';
+import {FirebaseService} from '../services/firebase.service';
 
 @Component({
   selector: 'app-new-start',
@@ -12,13 +13,15 @@ import {User} from '../classes/user';
 export class StartComponent implements OnInit {
     myParam: string;
     userArray: User[];
-    tableData: MatTableDataSource<User> = new MatTableDataSource();
+    dbUserArray: User[];
+    tableData: MatTableDataSource<User> = new MatTableDataSource<User>();
     displayedColumns: string[] = ['fname', 'lname', 'phone'];
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private peopleService: PeopleService
+        private peopleService: PeopleService,
+        private firebaseService: FirebaseService
     ) { }
 
     ngOnInit() {
@@ -29,9 +32,19 @@ export class StartComponent implements OnInit {
       );
       this.peopleService.people.subscribe(users => this.userArray = users);
       this.tableData.data = this.userArray;
+      this.firebaseService.getUsers().subscribe(
+          data => {
+              this.dbUserArray = data.map(e => {
+                  return {
+                      id: e.payload.doc.id,
+                      ...e.payload.doc.data()
+                  } as User;
+              });
+          }
+      );
     }
     printUser(): void {
-        console.log(this.userArray);
+        console.log(this.dbUserArray);
     }
     updateData(user: User): void {
         this.userArray.push(user);

@@ -29,7 +29,7 @@ import {FirebaseModules} from './firebase-modules';
         AppRoutingModule,
         BrowserAnimationsModule,
         MaterialModule,
-        AngularFireModule.initializeApp(environment.firebase, 'phonebook-angular-uni'),
+        AngularFireModule.initializeApp(environment.firebase),
         FirebaseModules,
     ],
   providers: [PeopleService],
