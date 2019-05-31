@@ -4,6 +4,7 @@ import {PeopleService} from '../services/people.service';
 import {MatTableDataSource} from '@angular/material';
 import {User} from '../classes/user';
 import {FirebaseService} from '../services/firebase.service';
+import {UserInterface} from '../interfaces/user-interface';
 
 @Component({
   selector: 'app-new-start',
@@ -13,8 +14,8 @@ import {FirebaseService} from '../services/firebase.service';
 export class StartComponent implements OnInit {
     myParam: string;
     userArray: User[];
-    dbUserArray: User[];
-    tableData: MatTableDataSource<User> = new MatTableDataSource<User>();
+    dbUserArray: UserInterface[];
+    tableData: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
     displayedColumns: string[] = ['fname', 'lname', 'phone'];
 
     constructor(
@@ -38,7 +39,7 @@ export class StartComponent implements OnInit {
                   return {
                       id: e.payload.doc.id,
                       ...e.payload.doc.data()
-                  } as User;
+                  } as UserInterface;
               });
           }
       );
@@ -46,11 +47,12 @@ export class StartComponent implements OnInit {
     printUser(): void {
         console.log(this.dbUserArray);
     }
-    updateData(user: User): void {
-        this.userArray.push(user);
-        console.log(this.userArray);
-        this.peopleService.addUser(this.userArray);
+    updateData(user: UserInterface): void {
+        // this.userArray.push(user);
+        // console.log(this.userArray);
+        // this.peopleService.addUser(this.userArray);
         // Update table because the subscription dose not work due to performance reasons
-        this.tableData._updateChangeSubscription();
+        // this.tableData._updateChangeSubscription();
+        this.firebaseService.addUser(user);
     }
 }
