@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {User} from '../classes/user';
 import {config} from '../app.config';
 import {UserInterface} from '../interfaces/user-interface';
@@ -9,28 +9,35 @@ import {UserInterface} from '../interfaces/user-interface';
 })
 export class FirebaseService {
     users: AngularFirestoreCollection<UserInterface>;
-    private docRef;
+    private docRef: AngularFirestoreDocument<any>;
 
-  constructor(private db: AngularFirestore) {
+    constructor(private db: AngularFirestore) {
       this.users = db.collection<UserInterface>(config.collection_endpoint);
-  }
-  getUsers() {
+    }
+    getUsers() {
       return this.db.collection<UserInterface>('users').snapshotChanges();
-  }
-  getUser(user: UserInterface) {
-      this.docRef = this.db.collection(config.collection_endpoint).doc(user.id);
-      this.docRef.get().then( doc => {
-          console.log(doc.data());
+    }
+    getUser(id: string): UserInterface {
+      const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
+      this.docRef = this.db.collection(config.collection_endpoint).doc(id);
+      this.docRef.get().toPromise().then( doc => {
+          if (doc.exists) {
+              returnUser.id = doc.data().id;
+              returnUser.fname = doc.data().fname;
+              returnUser.lname = doc.data().lname;
+              returnUser.phone = doc.data().phone;
+          }
       });
-  }
-  addUser(user: UserInterface) {
+      return returnUser;
+    }
+    addUser(user: UserInterface) {
       return this.users.doc(user.id).set(user);
-  }
-  updateUser(user: UserInterface) {
+    }
+    updateUser(user: UserInterface) {
       delete user.id;
       this.db.doc<User>('users/' + user.id).update(user);
-  }
-  deleteUser(userID: string) {
+    }
+    deleteUser(userID: string) {
       this.db.doc<User>('users/' + userID).delete();
-  }
+    }
 }

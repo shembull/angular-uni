@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {User} from '../classes/user';
 import {PeopleService} from '../services/people.service';
+import {FirebaseService} from '../services/firebase.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
@@ -10,28 +11,26 @@ import {PeopleService} from '../services/people.service';
 })
 export class UserPageComponent implements OnInit {
     private id: string;
-    private users: User[];
-    private user: User;
+    private user;
+    private sub: Subscription;
 
-  constructor(
-      private router: Router,
-      private route: ActivatedRoute,
-      private peopleService: PeopleService
-  ) { }
-
-  ngOnInit() {
-      this.route.params.subscribe(
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private peopleService: PeopleService,
+        private firebaseService: FirebaseService
+    ) { }
+    ngOnInit() {
+        this.route.params.subscribe(
           (params: Params) => {
               this.id = params.id;
           }
-      );
-      this.peopleService.people.subscribe(users => this.users = users);
-      for (const u of this.users) {
-          if (u.id === this.id) {
-              this.user = u;
-              break;
-          }
-      }
-  }
-
+        );
+        this.sub = this.firebaseService.users.doc(this.id).valueChanges().subscribe(
+          user => this.user = user
+        );
+    }
+    logUser() {
+        console.log(this.user);
+    }
 }
