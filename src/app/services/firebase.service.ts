@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 import {User} from '../classes/user';
 import {config} from '../app.config';
 import {UserInterface} from '../interfaces/user-interface';
+import firestore from '@angular/fire/firebase-node';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,17 @@ export class FirebaseService {
     }
     // Asynchronous user retrieval
     async getUser(id: string): Promise<UserInterface> {
-      const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
-      this.getUserPromise(id).then( doc => {
-          if (doc.exists) {
-              returnUser.id = doc.data().id;
-              returnUser.fname = doc.data().fname;
-              returnUser.lname = doc.data().lname;
-              returnUser.phone = doc.data().phone;
-          }
-      });
-      return returnUser;
+        const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
+        const doc = await this.getUserPromise(id);
+        if (doc.exists) {
+            returnUser.id = doc.data().id;
+            returnUser.fname = doc.data().fname;
+            returnUser.lname = doc.data().lname;
+            returnUser.phone = doc.data().phone;
+        }
+        return returnUser;
     }
-    async getUserPromise(id: string): Promise<any> {
+    async getUserPromise(id: string): Promise<firestore.DocumentSnapshot> {
         const docRef = this.db.collection<UserInterface>(config.collection_endpoint).doc<UserInterface>(id);
         return docRef.get().toPromise();
     }

@@ -24,7 +24,9 @@ export class StartComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private peopleService: PeopleService,
-        private firebaseService: FirebaseService
+        private firebaseService: FirebaseService,
+        // This wont work, dont know why...
+        // private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
