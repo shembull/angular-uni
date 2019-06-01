@@ -49,8 +49,12 @@ export class StartComponent implements OnInit {
     printUser(): void {
         console.log(this.dbUserArray);
     }
-    addUser(user: UserInterface): void {
-        this.firebaseService.addUser(user);
+    async addUser(user: UserInterface): Promise<void> {
+        let successUserAdd: boolean;
+        successUserAdd = await this.firebaseService.addUser(user);
+        if (!successUserAdd) {
+            alert('Der Benutzer existiert bereits!');
+        }
     }
     changeUserBut(user: UserInterface) {
         this.child.changeUserButFunc(user);

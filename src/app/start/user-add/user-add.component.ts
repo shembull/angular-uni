@@ -34,11 +34,10 @@ export class UserAddComponent implements OnInit {
             phone: '',
         };
     }
-    changeUserButFunc(user: UserInterface): void {
-        this.user = this.firebaseService.getUser(user.id);
+    async changeUserButFunc(user: UserInterface): Promise<void> {
+        this.user = await this.firebaseService.getUser(user.id);
         this.button.action = 'Ändern';
         this.button.func = this.updateUser;
-        console.log(user, this.user);
     }
     updateUser(comp: UserAddComponent): void {
         comp.firebaseService.updateUser(comp.user);

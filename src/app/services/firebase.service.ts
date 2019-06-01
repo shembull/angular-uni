@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {User} from '../classes/user';
 import {config} from '../app.config';
 import {UserInterface} from '../interfaces/user-interface';
@@ -9,7 +9,6 @@ import {UserInterface} from '../interfaces/user-interface';
 })
 export class FirebaseService {
     users: AngularFirestoreCollection<UserInterface>;
-    private docRef: AngularFirestoreDocument<UserInterface>;
 
     constructor(private db: AngularFirestore) {
       this.users = db.collection<UserInterface>(config.collection_endpoint);
@@ -17,10 +16,10 @@ export class FirebaseService {
     getUsers() {
       return this.db.collection<UserInterface>('users').snapshotChanges();
     }
-    getUser(id: string): UserInterface {
+    // Asynchronous user retrieval
+    async getUser(id: string): Promise<UserInterface> {
       const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
-      this.docRef = this.db.collection<UserInterface>(config.collection_endpoint).doc<UserInterface>(id);
-      this.docRef.get().toPromise().then( doc => {
+      this.getUserPromise(id).then( doc => {
           if (doc.exists) {
               returnUser.id = doc.data().id;
               returnUser.fname = doc.data().fname;
@@ -30,8 +29,19 @@ export class FirebaseService {
       });
       return returnUser;
     }
-    addUser(user: UserInterface) {
-      return this.users.doc<UserInterface>(user.id).set(user);
+    async getUserPromise(id: string): Promise<any> {
+        const docRef = this.db.collection<UserInterface>(config.collection_endpoint).doc<UserInterface>(id);
+        return docRef.get().toPromise();
+    }
+    async addUser(user: UserInterface): Promise<boolean> {
+        // check if user already exists
+        const userDb = await this.getUserPromise(user.id);
+        if (userDb.exists) {
+            return false;
+        } else {
+            this.users.doc<UserInterface>(user.id).set(user);
+            return true;
+        }
     }
     deleteUser(userID: string) {
       this.users.doc<UserInterface>(userID).delete();
