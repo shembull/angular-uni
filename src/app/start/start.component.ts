@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PeopleService} from '../services/people.service';
 import {MatTableDataSource} from '@angular/material';
 import {User} from '../classes/user';
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
+import {UserAddComponent} from './user-add/user-add.component';
 
 @Component({
   selector: 'app-new-start',
@@ -16,7 +17,8 @@ export class StartComponent implements OnInit {
     userArray: User[];
     dbUserArray: UserInterface[];
     tableData: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
-    displayedColumns: string[] = ['fname', 'lname', 'phone'];
+    displayedColumns: string[] = ['fname', 'lname', 'phone', 'actions'];
+    @ViewChild(UserAddComponent) child;
 
     constructor(
         private router: Router,
@@ -47,12 +49,10 @@ export class StartComponent implements OnInit {
     printUser(): void {
         console.log(this.dbUserArray);
     }
-    updateData(user: UserInterface): void {
-        // this.userArray.push(user);
-        // console.log(this.userArray);
-        // this.peopleService.addUser(this.userArray);
-        // Update table because the subscription dose not work due to performance reasons
-        // this.tableData._updateChangeSubscription();
+    addUser(user: UserInterface): void {
         this.firebaseService.addUser(user);
+    }
+    changeUserBut(user: UserInterface) {
+        this.child.changeUserButFunc(user);
     }
 }

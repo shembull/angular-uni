@@ -9,7 +9,7 @@ import {UserInterface} from '../interfaces/user-interface';
 })
 export class FirebaseService {
     users: AngularFirestoreCollection<UserInterface>;
-    private docRef: AngularFirestoreDocument<any>;
+    private docRef: AngularFirestoreDocument<UserInterface>;
 
     constructor(private db: AngularFirestore) {
       this.users = db.collection<UserInterface>(config.collection_endpoint);
@@ -19,7 +19,7 @@ export class FirebaseService {
     }
     getUser(id: string): UserInterface {
       const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
-      this.docRef = this.db.collection(config.collection_endpoint).doc(id);
+      this.docRef = this.db.collection<UserInterface>(config.collection_endpoint).doc<UserInterface>(id);
       this.docRef.get().toPromise().then( doc => {
           if (doc.exists) {
               returnUser.id = doc.data().id;
@@ -31,13 +31,14 @@ export class FirebaseService {
       return returnUser;
     }
     addUser(user: UserInterface) {
-      return this.users.doc(user.id).set(user);
-    }
-    updateUser(user: UserInterface) {
-      delete user.id;
-      this.db.doc<User>('users/' + user.id).update(user);
+      return this.users.doc<UserInterface>(user.id).set(user);
     }
     deleteUser(userID: string) {
-      this.db.doc<User>('users/' + userID).delete();
+      this.users.doc<UserInterface>(userID).delete();
+    }
+    updateUser(user: UserInterface) {
+        this.deleteUser(user.id);
+        user.id = User.getID(user.fname, user.lname, user.phone);
+        this.addUser(user);
     }
 }

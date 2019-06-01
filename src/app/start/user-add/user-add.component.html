@@ -34,8 +34,8 @@
     <button type="submit"
             mat-raised-button
             color="primary"
-            (click)="addUser()"
+            (click)="button.func(this)"
     >
-        Hinzufügen
+        {{button.action}}
     </button>
 </form>
