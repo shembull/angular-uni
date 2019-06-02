@@ -5,7 +5,8 @@ import {
     MatListModule,
     MatTableModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -23,6 +24,7 @@ import {FormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
+        MatSnackBarModule
     ],
     exports: [
         MatButtonModule,
@@ -36,6 +38,7 @@ import {FormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
+        MatSnackBarModule
     ],
 })
 export class MaterialModule { }

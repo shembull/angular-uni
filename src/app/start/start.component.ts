@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PeopleService} from '../services/people.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
 import {User} from '../classes/user';
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
@@ -25,8 +25,7 @@ export class StartComponent implements OnInit {
         private route: ActivatedRoute,
         private peopleService: PeopleService,
         private firebaseService: FirebaseService,
-        // This wont work, dont know why...
-        // private snackBar: MatSnackBar
+        private snackBar: MatSnackBar
     ) { }
 
     ngOnInit() {
@@ -55,7 +54,8 @@ export class StartComponent implements OnInit {
         let successUserAdd: boolean;
         successUserAdd = await this.firebaseService.addUser(user);
         if (!successUserAdd) {
-            alert('Der Benutzer existiert bereits!');
+            this.snackBar.open('Der Benutzer existiert bereits!', 'Ok', {duration: 5000});
+            // alert('Der Benutzer existiert bereits!');
         }
     }
     changeUserBut(user: UserInterface) {
