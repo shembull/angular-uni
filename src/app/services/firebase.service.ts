@@ -4,6 +4,7 @@ import {User} from '../classes/user';
 import {config} from '../app.config';
 import {UserInterface} from '../interfaces/user-interface';
 import firestore from '@angular/fire/firebase-node';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class FirebaseService {
     constructor(private db: AngularFirestore) {
       this.users = db.collection<UserInterface>(config.collection_endpoint);
     }
-    getUsers() {
-      return this.db.collection<UserInterface>('users').snapshotChanges();
+    getUsers(): Observable<UserInterface[]> {
+      return this.db.collection<UserInterface>('users').valueChanges();
     }
     // Asynchronous user retrieval
     async getUser(id: string): Promise<UserInterface> {
