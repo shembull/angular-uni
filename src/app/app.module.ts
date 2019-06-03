@@ -8,7 +8,7 @@ import {MaterialModule} from './angular-material';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TestComponent } from './test/test.component';
 import { StartComponent } from './start/start.component';
-import {PeopleService} from './services/people.service';
+import {DataService} from './services/data.service';
 import { UserAddComponent } from './start/user-add/user-add.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import {AngularFireModule} from '@angular/fire';
@@ -32,7 +32,7 @@ import {FirebaseModules} from './firebase-modules';
         AngularFireModule.initializeApp(environment.firebase),
         FirebaseModules,
     ],
-  providers: [PeopleService],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

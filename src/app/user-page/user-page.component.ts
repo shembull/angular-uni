@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {PeopleService} from '../services/people.service';
+import {DataService} from '../services/data.service';
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 
@@ -16,7 +16,7 @@ export class UserPageComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private peopleService: PeopleService,
+        private peopleService: DataService,
         private firebaseService: FirebaseService
     ) {
         this.user = {

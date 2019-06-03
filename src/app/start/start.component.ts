@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {PeopleService} from '../services/people.service';
+import {DataService} from '../services/data.service';
 import {MatSnackBar, MatTableDataSource} from '@angular/material';
 import {User} from '../classes/user';
 import {FirebaseService} from '../services/firebase.service';
@@ -23,7 +23,7 @@ export class StartComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private peopleService: PeopleService,
+        private peopleService: DataService,
         private firebaseService: FirebaseService,
         private snackBar: MatSnackBar
     ) { }
@@ -36,6 +36,7 @@ export class StartComponent implements OnInit {
       );
       this.peopleService.people.subscribe(users => this.userArray = users);
       this.tableData.data = this.userArray;
+      /*
       this.firebaseService.getUsers().subscribe(
           data => {
               this.dbUserArray = data.map(e => {
@@ -46,6 +47,8 @@ export class StartComponent implements OnInit {
               });
           }
       );
+      */
+      this.firebaseService.getUsers().subscribe(users => this.dbUserArray = users);
     }
     printUser(): void {
         console.log(this.dbUserArray);

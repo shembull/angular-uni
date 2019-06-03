@@ -5,7 +5,7 @@ import {User} from '../classes/user';
 @Injectable({
   providedIn: 'root'
 })
-export class PeopleService {
+export class DataService {
     private peopleSubject = new BehaviorSubject<User[]>(
         [
         new User('Niklas', 'Weber', '123456789'),

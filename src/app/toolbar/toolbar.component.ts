@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {PeopleService} from '../services/people.service';
+import {DataService} from '../services/data.service';
 import {User} from '../classes/user';
 
 @Component({
@@ -10,7 +10,7 @@ import {User} from '../classes/user';
 export class ToolbarComponent implements OnInit {
     users: User[];
     constructor(
-      private peopleService: PeopleService
+      private peopleService: DataService
     ) {}
     @Output() buttonClick = new EventEmitter<{buttonTitle: string}>();
     buttonClicked(butTitle: string) {
