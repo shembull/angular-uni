@@ -23,7 +23,7 @@ export class StartComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private peopleService: DataService,
+        private dataService: DataService,
         private firebaseService: FirebaseService,
         private snackBar: MatSnackBar
     ) { }
@@ -34,21 +34,12 @@ export class StartComponent implements OnInit {
               this.myParam = params.urlParam;
           }
       );
-      this.peopleService.people.subscribe(users => this.userArray = users);
+      // Old implementation with local array
+      this.dataService.people.subscribe(users => this.userArray = users);
       this.tableData.data = this.userArray;
-      /*
-      this.firebaseService.getUsers().subscribe(
-          data => {
-              this.dbUserArray = data.map(e => {
-                  return {
-                      id: e.payload.doc.id,
-                      ...e.payload.doc.data()
-                  } as UserInterface;
-              });
-          }
-      );
-      */
+      // New implementation with database
       this.firebaseService.getUsers().subscribe(users => this.dbUserArray = users);
+      this.dataService.changeToolbarTitle('Telefonbuch');
     }
     printUser(): void {
         console.log(this.dbUserArray);

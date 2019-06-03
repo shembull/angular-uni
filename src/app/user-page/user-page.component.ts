@@ -10,13 +10,13 @@ import {UserInterface} from '../interfaces/user-interface';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-    private id: string;
+    private id; title: string;
     private user: UserInterface;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private peopleService: DataService,
+        private dataService: DataService,
         private firebaseService: FirebaseService
     ) {
         this.user = {
@@ -33,6 +33,8 @@ export class UserPageComponent implements OnInit {
           }
         );
         this.user = await this.firebaseService.getUser(this.id);
+        this.dataService.toolbarHeader.subscribe(title => this.title = title);
+        this.dataService.changeToolbarTitle(this.title.concat(' - ', this.user.fname, ' ', this.user.lname));
     }
     logUser() {
         this.firebaseService.getUser(this.id).then(u => console.log(u));

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../classes/user';
 
 @Injectable({
@@ -14,9 +14,14 @@ export class DataService {
         new User('Mark', 'Gilgen', '123456789')
         ]
     );
-    people = this.peopleSubject.asObservable();
+    private toolbarHeaderSubject = new BehaviorSubject<string>('');
+    people: Observable<User[]> = this.peopleSubject.asObservable();
+    toolbarHeader: Observable<string> = this.toolbarHeaderSubject.asObservable();
     constructor() { }
-    addUser(newUsers: User[]) {
-      this.peopleSubject.next(newUsers);
+    addUser(newUsers: User[]): void {
+      return this.peopleSubject.next(newUsers);
+    }
+    changeToolbarTitle(title: string): void {
+        return this.toolbarHeaderSubject.next(title);
     }
 }

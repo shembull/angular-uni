@@ -1,6 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../services/data.service';
-import {User} from '../classes/user';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,15 +7,11 @@ import {User} from '../classes/user';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-    users: User[];
+    private title: string;
     constructor(
-      private peopleService: DataService
+      private dataService: DataService
     ) {}
-    @Output() buttonClick = new EventEmitter<{buttonTitle: string}>();
-    buttonClicked(butTitle: string) {
-      this.buttonClick.emit({buttonTitle: butTitle});
-    }
     ngOnInit() {
-      this.peopleService.people.subscribe(users => this.users = users);
+      this.dataService.toolbarHeader.subscribe(title => this.title = title);
     }
 }
