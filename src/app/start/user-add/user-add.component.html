@@ -31,6 +31,18 @@
             >
         </label>
     </mat-form-field>
+
+    <mat-form-field class="user-add-form">
+        <label>
+            <input matInput
+                   type="email"
+                   placeholder="Email"
+                   [(ngModel)]="user.mail"
+                   [ngModelOptions]="{standalone: true}"
+            >
+        </label>
+    </mat-form-field>
+
     <button type="submit"
             mat-raised-button
             color="primary"

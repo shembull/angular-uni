@@ -23,6 +23,7 @@ export class UserPageComponent implements OnInit {
             fname: '',
             lname: '',
             phone: '',
+            mail: '',
             id: ''
         };
     }

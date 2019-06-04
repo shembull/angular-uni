@@ -1,6 +1,11 @@
 form {
-    /*display: flex;*/
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
 }
 mat-form-field {
+    margin: 2em;
+}
+button {
     margin: 2em;
 }

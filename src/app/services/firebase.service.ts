@@ -20,13 +20,14 @@ export class FirebaseService {
     }
     // Asynchronous user retrieval
     async getUser(id: string): Promise<UserInterface> {
-        const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: ''};
+        const returnUser: UserInterface = {fname: '', id: '', lname: '', phone: '', mail: ''};
         const doc = await this.getUserPromise(id);
         if (doc.exists) {
             returnUser.id = doc.data().id;
             returnUser.fname = doc.data().fname;
             returnUser.lname = doc.data().lname;
             returnUser.phone = doc.data().phone;
+            returnUser.mail = doc.data().mail;
         }
         return returnUser;
     }
@@ -49,7 +50,7 @@ export class FirebaseService {
     }
     updateUser(user: UserInterface) {
         this.deleteUser(user.id);
-        user.id = User.getID(user.fname, user.lname, user.phone);
+        user.id = User.getID(user);
         this.addUser(user);
     }
 }

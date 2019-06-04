@@ -14,6 +14,7 @@ export class UserAddComponent implements OnInit {
         fname: '',
         id: '',
         lname: '',
+        mail: '',
         phone: '',
     };
     button = {
@@ -25,12 +26,13 @@ export class UserAddComponent implements OnInit {
     ) { }
     ngOnInit() { }
     addUser(comp: UserAddComponent): void {
-        comp.user.id = User.getID(comp.user.fname, comp.user.lname, comp.user.phone);
+        comp.user.id = User.getID(comp.user);
         comp.userAdded.emit(comp.user);
         comp.user = {
             fname: '',
             id: '',
             lname: '',
+            mail: '',
             phone: '',
         };
     }
@@ -46,6 +48,7 @@ export class UserAddComponent implements OnInit {
             id: '',
             lname: '',
             phone: '',
+            mail: '',
         };
         comp.button.action = 'Hinzufügen';
         comp.button.func = comp.addUser;

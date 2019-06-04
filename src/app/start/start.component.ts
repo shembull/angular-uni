@@ -16,8 +16,8 @@ export class StartComponent implements OnInit {
     myParam: string;
     userArray: User[];
     dbUserArray: UserInterface[];
-    tableData: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
-    displayedColumns: string[] = ['fname', 'lname', 'phone', 'actions'];
+    tableData: MatTableDataSource<User> = new MatTableDataSource<User>();
+    displayedColumns: string[] = ['fname', 'lname', 'mail', 'phone', 'actions'];
     @ViewChild(UserAddComponent) child;
 
     constructor(

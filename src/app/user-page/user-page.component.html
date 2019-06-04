@@ -6,12 +6,23 @@
         </mat-card-header>
         <img mat-card-image src="https://picsum.photos/400" alt="random image">
         <mat-card-content>
-            <p>Name: {{user.fname}} {{user.lname}}</p>
-            <p>Telefon: {{user.phone}}</p>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{user.fname}} {{user.lname}}</td>
+                </tr>
+                <tr>
+                    <td>Telefon:</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><a [href]="['mailto://', user.mail]"> {{user.mail}} </a></td>
+                </tr>
+            </table>
         </mat-card-content>
         <mat-card-actions>
-            <a routerLink="/"><button mat-raised-button>Got It!</button></a>
-            <button mat-raised-button (click)="logUser()">Get User</button>
+            <button mat-raised-button [routerLink]="'/'">Got It!</button>
         </mat-card-actions>
     </mat-card>
 </div>
