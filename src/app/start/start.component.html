@@ -1,22 +1,22 @@
 <table mat-table [dataSource]="dbUserArray" class="mat-elevation-z10">
     <ng-container matColumnDef="fname">
         <th mat-header-cell *matHeaderCellDef> Vorname </th>
-        <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
+        <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lname">
         <th mat-header-cell *matHeaderCellDef> Nachname </th>
-        <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
+        <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
     </ng-container>
 
     <ng-container matColumnDef="mail">
         <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
+        <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
     </ng-container>
 
     <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef> Telefon </th>
-        <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
+        <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
