@@ -29,17 +29,17 @@ export class StartComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-      this.route.params.subscribe(
-          (params: Params) => {
-              this.myParam = params.urlParam;
-          }
-      );
-      // Old implementation with local array
-      this.dataService.people.subscribe(users => this.userArray = users);
-      this.tableData.data = this.userArray;
-      // New implementation with database
-      this.firebaseService.getUsers().subscribe(users => this.dbUserArray = users);
-      this.dataService.changeToolbarTitle('Telefonbuch');
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.myParam = params.urlParam;
+            }
+        );
+        // Old implementation with local array
+        this.dataService.people.subscribe(users => this.userArray = users);
+        this.tableData.data = this.userArray;
+        this.dataService.changeToolbarTitle('Telefonbuch');
+        // New implementation with database
+        this.firebaseService.getUsers().subscribe(users => this.dbUserArray = users);
     }
     printUser(): void {
         console.log(this.dbUserArray);
