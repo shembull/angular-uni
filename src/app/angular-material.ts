@@ -38,7 +38,7 @@ import {FormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
-        MatSnackBarModule
+        MatSnackBarModule,
     ],
 })
 export class MaterialModule { }
