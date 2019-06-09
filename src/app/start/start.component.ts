@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
-import {MatSnackBar, MatTableDataSource} from '@angular/material';
-import {User} from '../classes/user';
+import {MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 import {UserAddComponent} from './user-add/user-add.component';
@@ -14,11 +13,11 @@ import {UserAddComponent} from './user-add/user-add.component';
 })
 export class StartComponent implements OnInit {
     myParam: string;
-    userArray: User[];
-    dbUserArray: UserInterface[];
-    tableData: MatTableDataSource<User> = new MatTableDataSource<User>();
+    dbUserArray: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
     displayedColumns: string[] = ['fname', 'lname', 'mail', 'phone', 'actions'];
+    data;
     @ViewChild(UserAddComponent) child;
+    @ViewChild(MatSort) sort: MatSort;
 
     constructor(
         private router: Router,
@@ -28,18 +27,21 @@ export class StartComponent implements OnInit {
         private snackBar: MatSnackBar
     ) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.route.params.subscribe(
             (params: Params) => {
                 this.myParam = params.urlParam;
             }
         );
         // Old implementation with local array
+        /*
         this.dataService.people.subscribe(users => this.userArray = users);
         this.tableData.data = this.userArray;
         this.dataService.changeToolbarTitle('Telefonbuch');
+        */
         // New implementation with database
-        this.firebaseService.getUsers().subscribe(users => this.dbUserArray = users);
+        await this.firebaseService.getUsers().subscribe(users => this.dbUserArray.data = users);
+        this.dbUserArray.sort = this.sort;
     }
     printUser(): void {
         console.log(this.dbUserArray);
@@ -48,7 +50,7 @@ export class StartComponent implements OnInit {
         let successUserAdd: boolean;
         successUserAdd = await this.firebaseService.addUser(user);
         if (!successUserAdd) {
-            this.snackBar.open('Der Benutzer existiert bereits!', 'Ok', {duration: 5000});
+            this.snackBar.open('Der Benutzer existiert bereits!', 'Ok', {duration: 10000});
             // alert('Der Benutzer existiert bereits!');
         }
     }

@@ -14,6 +14,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
+import {MatSortModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {FirebaseModules} from './firebase-modules';
         MaterialModule,
         AngularFireModule.initializeApp(environment.firebase),
         FirebaseModules,
+        MatSortModule,
     ],
   providers: [DataService],
   bootstrap: [AppComponent]
