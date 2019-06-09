@@ -15,6 +15,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
 import {MatSortModule} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatSortModule} from '@angular/material';
         AngularFireModule.initializeApp(environment.firebase),
         FirebaseModules,
         MatSortModule,
+        FlexLayoutModule,
     ],
   providers: [DataService],
   bootstrap: [AppComponent]

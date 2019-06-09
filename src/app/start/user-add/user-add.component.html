@@ -24,9 +24,9 @@
     <mat-form-field class="user-add-form">
         <label>
             <input matInput
-                   type="tel"
-                   placeholder="Telefon"
-                   [(ngModel)]="user.phone"
+                   type="email"
+                   placeholder="Email"
+                   [(ngModel)]="user.mail"
                    [ngModelOptions]="{standalone: true}"
             >
         </label>
@@ -35,9 +35,9 @@
     <mat-form-field class="user-add-form">
         <label>
             <input matInput
-                   type="email"
-                   placeholder="Email"
-                   [(ngModel)]="user.mail"
+                   type="tel"
+                   placeholder="Telefon"
+                   [(ngModel)]="user.phone"
                    [ngModelOptions]="{standalone: true}"
             >
         </label>

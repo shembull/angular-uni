@@ -16,8 +16,8 @@ export class StartComponent implements OnInit {
     dbUserArray: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
     displayedColumns: string[] = ['fname', 'lname', 'mail', 'phone', 'actions'];
     data;
-    @ViewChild(UserAddComponent) child;
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(UserAddComponent, {static: true}) child;
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     constructor(
         private router: Router,
@@ -37,8 +37,8 @@ export class StartComponent implements OnInit {
         /*
         this.dataService.people.subscribe(users => this.userArray = users);
         this.tableData.data = this.userArray;
-        this.dataService.changeToolbarTitle('Telefonbuch');
         */
+        this.dataService.changeToolbarTitle('Telefonbuch');
         // New implementation with database
         await this.firebaseService.getUsers().subscribe(users => this.dbUserArray.data = users);
         this.dbUserArray.sort = this.sort;
@@ -56,5 +56,9 @@ export class StartComponent implements OnInit {
     }
     changeUserBut(user: UserInterface) {
         this.child.changeUserButFunc(user);
+    }
+
+    filter(value: string) {
+        this.dbUserArray.filter = value.trim().toLocaleLowerCase();
     }
 }
