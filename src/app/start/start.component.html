@@ -1,44 +1,51 @@
-<div fxLayoutAlign="center center">
-    <mat-form-field fxFlex="30%">
-            <input matInput type="text" (keyup)="filter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+<div class="main-content" [ngStyle]="showContent">
+    <div fxLayoutAlign="center center">
+        <mat-form-field fxFlex="30%">
+            <label>
+                <input matInput type="text" (keyup)="filter($event.target.value)" placeholder="Filter">
+            </label>
+        </mat-form-field>
+    </div>
+
+    <div class="user-table">
+        <table mat-table matSort [dataSource]="dbUserArray" class="mat-elevation-z10">
+            <ng-container matColumnDef="fname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mail">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefon </th>
+                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Aktionen </th>
+                <td mat-cell *matCellDef="let user">
+                    <button mat-stroked-button (click)="firebaseService.deleteUser(user.id)">Löschen</button>
+                    <button mat-stroked-button (click)="changeUserBut(user)">Ändern</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let user"></tr>
+        </table>
+    </div>
+
+    <div class="user-add-comp">
+        <app-user-add (userAdded)="addUser($event)"></app-user-add>
+    </div>
 </div>
-
-<div class="user-table">
-    <table mat-table matSort [dataSource]="dbUserArray" class="mat-elevation-z10">
-        <ng-container matColumnDef="fname">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-            <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="lname">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-            <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="mail">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="phone">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefon </th>
-            <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Aktionen </th>
-            <td mat-cell *matCellDef="let user">
-                <button mat-stroked-button (click)="firebaseService.deleteUser(user.id)">Löschen</button>
-                <button mat-stroked-button (click)="changeUserBut(user)">Ändern</button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns; let user"></tr>
-    </table>
-</div>
-
-<div class="user-add-comp">
-    <app-user-add (userAdded)="addUser($event)"></app-user-add>
+<div class="loading-animation" fxLayoutAlign="center" [ngStyle]="showLoadingCircle">
+    <mat-spinner></mat-spinner>
 </div>

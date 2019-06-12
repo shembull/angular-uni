@@ -18,6 +18,8 @@ export class StartComponent implements OnInit {
     data;
     @ViewChild(UserAddComponent, {static: true}) child;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
+    showContent;
+    showLoadingCircle;
 
     constructor(
         private router: Router,
@@ -27,7 +29,9 @@ export class StartComponent implements OnInit {
         private snackBar: MatSnackBar
     ) { }
 
-    async ngOnInit() {
+    ngOnInit() {
+        this.showContent = {display: 'none'};
+        this.showLoadingCircle = {display: 'inline'};
         this.route.params.subscribe(
             (params: Params) => {
                 this.myParam = params.urlParam;
@@ -40,7 +44,11 @@ export class StartComponent implements OnInit {
         */
         this.dataService.changeToolbarTitle('Telefonbuch');
         // New implementation with database
-        await this.firebaseService.getUsers().subscribe(users => this.dbUserArray.data = users);
+        this.firebaseService.getUsers().subscribe(users => {
+            this.dbUserArray.data = users;
+            this.showLoadingCircle = {display: 'none'};
+            this.showContent = {display: 'inline'};
+        });
         this.dbUserArray.sort = this.sort;
     }
     printUser(): void {
