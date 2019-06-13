@@ -1,4 +1,4 @@
-<div class="main-content" [ngStyle]="showContent">
+<div class="main-content" [ngClass]="cssClassContent">
     <div fxLayoutAlign="center center">
         <mat-form-field fxFlex="30%">
             <label>
@@ -51,6 +51,6 @@
         <app-user-add (userAdded)="addUser($event)"></app-user-add>
     </div>
 </div>
-<div class="loading-animation" fxLayoutAlign="center" [ngStyle]="showLoadingCircle">
+<div class="loading-animation" fxLayoutAlign="center" *ngIf="loadingCircle">
     <mat-spinner></mat-spinner>
 </div>

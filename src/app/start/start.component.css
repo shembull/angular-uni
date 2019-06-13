@@ -16,3 +16,9 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.show {
+    display: inline;
+}
+.hide {
+    display: none;
+}

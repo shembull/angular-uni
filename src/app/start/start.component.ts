@@ -19,8 +19,8 @@ export class StartComponent implements OnInit {
     @ViewChild(UserAddComponent, {static: true}) child;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-    showContent;
-    showLoadingCircle;
+    cssClassContent;
+    loadingCircle: boolean;
 
     constructor(
         private router: Router,
@@ -31,8 +31,8 @@ export class StartComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.showContent = {display: 'none'};
-        this.showLoadingCircle = {display: 'inline'};
+        this.cssClassContent = 'hide';
+        this.loadingCircle = true;
         this.dbUserArray.paginator = this.paginator;
         this.route.params.subscribe(
             (params: Params) => {
@@ -48,13 +48,10 @@ export class StartComponent implements OnInit {
         // New implementation with database
         this.firebaseService.getUsers().subscribe(users => {
             this.dbUserArray.data = users;
-            this.showLoadingCircle = {display: 'none'};
-            this.showContent = {display: 'inline'};
+            this.loadingCircle = false;
+            this.cssClassContent = 'show';
         });
         this.dbUserArray.sort = this.sort;
-    }
-    printUser(): void {
-        console.log(this.dbUserArray);
     }
     async addUser(user: UserInterface): Promise<void> {
         let successUserAdd: boolean;
