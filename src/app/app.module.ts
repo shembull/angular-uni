@@ -14,7 +14,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
-import {MatProgressSpinnerModule, MatSortModule} from '@angular/material';
+import {MatPaginatorModule, MatProgressSpinnerModule, MatSortModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
@@ -36,6 +36,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
         MatSortModule,
         FlexLayoutModule,
         MatProgressSpinnerModule,
+        MatPaginatorModule,
     ],
   providers: [DataService],
   bootstrap: [AppComponent]

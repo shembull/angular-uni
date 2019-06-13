@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {DataService} from '../services/data.service';
-import {MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 import {UserAddComponent} from './user-add/user-add.component';
@@ -18,6 +18,7 @@ export class StartComponent implements OnInit {
     data;
     @ViewChild(UserAddComponent, {static: true}) child;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     showContent;
     showLoadingCircle;
 
@@ -32,6 +33,7 @@ export class StartComponent implements OnInit {
     ngOnInit() {
         this.showContent = {display: 'none'};
         this.showLoadingCircle = {display: 'inline'};
+        this.dbUserArray.paginator = this.paginator;
         this.route.params.subscribe(
             (params: Params) => {
                 this.myParam = params.urlParam;

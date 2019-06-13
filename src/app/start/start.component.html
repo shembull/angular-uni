@@ -8,7 +8,9 @@
     </div>
 
     <div class="user-table">
-        <table mat-table matSort [dataSource]="dbUserArray" class="mat-elevation-z10">
+        <table mat-table matSort
+               [dataSource]="dbUserArray" matSortActive="fname" matSortDisableClear matSortDirection="asc"
+               class="mat-elevation-z10">
             <ng-container matColumnDef="fname">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
                 <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
@@ -40,6 +42,8 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns; let user"></tr>
         </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 50, 100]"></mat-paginator>
     </div>
 
     <div class="user-add-comp">
