@@ -9,7 +9,8 @@
 
     <div class="user-table">
         <table mat-table matSort
-               [dataSource]="dbUserArray" matSortActive="fname" matSortDisableClear matSortDirection="asc"
+               matSortActive="fname" matSortDisableClear matSortDirection="asc"
+               [dataSource]="dbUserArray"
                class="mat-elevation-z10">
             <ng-container matColumnDef="fname">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>

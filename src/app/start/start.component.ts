@@ -71,4 +71,8 @@ export class StartComponent implements OnInit {
     filter(value: string) {
         this.dbUserArray.filter = value.trim().toLocaleLowerCase();
     }
+
+    log(value: any): void {
+        console.log(value);
+    }
 }

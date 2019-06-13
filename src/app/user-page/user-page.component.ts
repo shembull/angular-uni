@@ -11,7 +11,7 @@ import {UserInterface} from '../interfaces/user-interface';
 })
 export class UserPageComponent implements OnInit {
     private id; title: string;
-    private user: UserInterface;
+    user: UserInterface;
 
     constructor(
         private router: Router,

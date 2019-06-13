@@ -7,7 +7,7 @@ import {DataService} from '../services/data.service';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-    private title: string;
+    title: string;
     constructor(
       private dataService: DataService
     ) {}
