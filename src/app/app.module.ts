@@ -16,6 +16,8 @@ import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
 import {MatPaginatorModule, MatProgressSpinnerModule, MatSortModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { NewUserPageComponent } from './new-user-page/new-user-page.component';
+import { ParallaxDirective } from './new-user-page/parallax.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     StartComponent,
     UserAddComponent,
     UserPageComponent,
+    NewUserPageComponent,
+    ParallaxDirective,
   ],
     imports: [
         BrowserModule,
