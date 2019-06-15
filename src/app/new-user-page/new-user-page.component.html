@@ -2,12 +2,13 @@
     <div appParallax [ratio]="0.18" [top]="0" class="background-image">
         <img [src]="'https://picsum.photos/' + innerWidth + '/300?blur=6'" alt="Background Pic">
     </div>
-    <div appParallax [ratio]="1.0" [top]="64" class="header mat-elevation-z8">
+    <div appParallax [ratio]="1.0" [top]="64" class="header mat-elevation-z8 mat-primary">
         <div class="user-name">
-            {{user.fname}} {{user.lname}}
+            <p>
+                {{user.fname}} {{user.lname}}
+            </p>
         </div>
     </div>
-    <app-toolbar appParallax [ratio]="1.0" [top]="0" class="toolbar-fixed"></app-toolbar>
     <div appParallax [ratio]="1.0" [top]="288" class="user-content  mat-elevation-z8">
         <mat-tab-group>
             <mat-tab label="Daten">
@@ -43,4 +44,5 @@
     <div appParallax [ratio]="1.0" [top]="158" class="user-profile-pic">
         <img src="https://picsum.photos/150" alt="Profile Pic" class="mat-elevation-z8">
     </div>
+    <app-toolbar class="toolbar-fixed"></app-toolbar>
 </div>

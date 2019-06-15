@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserInterface} from '../interfaces/user-interface';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {DataService} from '../services/data.service';
+import {ActivatedRoute, Params} from '@angular/router';
 import {FirebaseService} from '../services/firebase.service';
 
 @Component({
@@ -15,9 +14,7 @@ export class NewUserPageComponent implements OnInit {
     user: UserInterface;
 
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
-        private dataService: DataService,
         private firebaseService: FirebaseService
     ) {
         this.user = {
@@ -39,8 +36,6 @@ export class NewUserPageComponent implements OnInit {
         );
         this.firebaseService.getUser(this.id).then(user => {
             this.user = user;
-            this.dataService.toolbarHeader.subscribe(title => this.title = title);
-            this.dataService.changeToolbarTitle(this.title.concat(' - ', this.user.fname, ' ', this.user.lname));
         });
     }
 

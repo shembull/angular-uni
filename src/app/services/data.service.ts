@@ -14,7 +14,7 @@ export class DataService {
         new User('Mark', 'Gilgen', '123456789')
         ]
     );
-    private toolbarHeaderSubject = new BehaviorSubject<string>('');
+    private toolbarHeaderSubject = new BehaviorSubject<string>('Telefonbuch');
     people: Observable<User[]> = this.peopleSubject.asObservable();
     toolbarHeader: Observable<string> = this.toolbarHeaderSubject.asObservable();
     constructor() { }
