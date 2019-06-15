@@ -16,6 +16,26 @@
     background-color: rgb(103, 58, 183);
 }
 
+@media (max-width: 599px){
+    .header {
+        top: 56px;
+    }
+    .user-profile-pic {
+        top: 150px;
+    }
+    .user-content {
+        top: 280px;
+    }
+}
+
+mat-card-content a{
+    margin: 3px;
+}
+
+mat-card-content {
+    display: flex;
+}
+
 .user-name {
     display: flex;
     justify-content: left;
@@ -66,3 +86,5 @@
     content: '';
     height: 8px;
 }
+
+

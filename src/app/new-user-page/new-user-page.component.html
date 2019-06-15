@@ -1,15 +1,15 @@
-<div class="main-container">
+<div class="main-container" (resized)="changeTop($event)">
     <div appParallax [ratio]="0.3" [top]="0" class="background-image">
         <img [src]="'https://picsum.photos/' + innerWidth + '/300?blur=6'" alt="Background Pic">
     </div>
-    <div appParallax [ratio]="1.0" [top]="64" class="header mat-elevation-z8 mat-primary">
+    <div appParallax [ratio]="1.0" [top]="topOffset" class="header mat-elevation-z8 mat-primary">
         <div class="user-name">
             <p>
                 {{user.fname}} {{user.lname}}
             </p>
         </div>
     </div>
-    <div appParallax [ratio]="1.0" [top]="288" class="user-content  mat-elevation-z8">
+    <div appParallax [ratio]="1.0" [top]="topOffset + 224" class="user-content  mat-elevation-z8">
         <mat-tab-group>
             <mat-tab label="Daten">
                 <div class="user-data">
@@ -41,7 +41,7 @@
             </mat-tab>
         </mat-tab-group>
     </div>
-    <div appParallax [ratio]="1.0" [top]="158" class="user-profile-pic">
+    <div appParallax [ratio]="0.9" [top]="topOffset + 94" class="user-profile-pic">
         <img src="https://picsum.photos/150" alt="Profile Pic" class="mat-elevation-z8">
     </div>
     <app-toolbar class="toolbar-fixed"></app-toolbar>

@@ -18,6 +18,7 @@ import {MatPaginatorModule, MatProgressSpinnerModule, MatSortModule, MatTabsModu
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NewUserPageComponent } from './new-user-page/new-user-page.component';
 import { ParallaxDirective } from './new-user-page/parallax.directive';
+import {AngularResizedEventModule} from 'angular-resize-event';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ParallaxDirective } from './new-user-page/parallax.directive';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         MatTabsModule,
+        AngularResizedEventModule,
     ],
   providers: [DataService],
   bootstrap: [AppComponent]

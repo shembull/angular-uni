@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserInterface} from '../interfaces/user-interface';
 import {ActivatedRoute, Params} from '@angular/router';
 import {FirebaseService} from '../services/firebase.service';
+import {ResizedEvent} from 'angular-resize-event';
 
 @Component({
   selector: 'app-new-user-page',
@@ -10,8 +11,10 @@ import {FirebaseService} from '../services/firebase.service';
 })
 export class NewUserPageComponent implements OnInit {
     innerWidth: number;
-    private id; title: string;
+    private id;
+    title: string;
     user: UserInterface;
+    topOffset: number;
 
     constructor(
         private route: ActivatedRoute,
@@ -39,4 +42,15 @@ export class NewUserPageComponent implements OnInit {
         });
     }
 
+    changeTop(event: ResizedEvent) {
+        if (event.newWidth <= 599) {
+            this.topOffset = 56;
+        } else {
+            this.topOffset = 64;
+        }
+    }
+
+    log(el: any) {
+        console.log(el);
+    }
 }
