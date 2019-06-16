@@ -35,7 +35,7 @@ export class DialogPopUpComponent implements OnInit {
         switch (this.data.field) {
             case 'phone':
                 return this.phoneFormControl;
-            case 'mail':
+            case 'email':
                 return this.mailFormControl;
         }
     }
