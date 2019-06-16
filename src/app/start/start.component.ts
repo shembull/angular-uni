@@ -45,6 +45,7 @@ export class StartComponent implements OnInit {
         this.tableData.data = this.userArray;
         */
         this.dataService.changeToolbarTitle('Telefonbuch');
+        this.dataService.deactivateIcon();
         // New implementation with database
         this.firebaseService.getUsers().subscribe(users => {
             this.dbUserArray.data = users;

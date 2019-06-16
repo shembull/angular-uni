@@ -19,6 +19,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { NewUserPageComponent } from './new-user-page/new-user-page.component';
 import { ParallaxDirective } from './new-user-page/parallax.directive';
 import {AngularResizedEventModule} from 'angular-resize-event';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {AngularResizedEventModule} from 'angular-resize-event';
         MatPaginatorModule,
         MatTabsModule,
         AngularResizedEventModule,
+        ReactiveFormsModule,
     ],
   providers: [DataService],
   bootstrap: [AppComponent]

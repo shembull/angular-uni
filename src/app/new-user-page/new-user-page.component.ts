@@ -3,6 +3,7 @@ import {UserInterface} from '../interfaces/user-interface';
 import {ActivatedRoute, Params} from '@angular/router';
 import {FirebaseService} from '../services/firebase.service';
 import {ResizedEvent} from 'angular-resize-event';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-new-user-page',
@@ -18,7 +19,8 @@ export class NewUserPageComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private firebaseService: FirebaseService
+        private firebaseService: FirebaseService,
+        private dataService: DataService,
     ) {
         this.user = {
             fname: '',
@@ -40,6 +42,7 @@ export class NewUserPageComponent implements OnInit {
         this.firebaseService.getUser(this.id).then(user => {
             this.user = user;
         });
+        this.dataService.activateIcon();
     }
 
     changeTop(event: ResizedEvent) {
