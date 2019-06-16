@@ -1,6 +1,10 @@
 <nav>
     <mat-toolbar color="primary" class="mat-elevation-z5">
-        <mat-icon *ngIf="arrow">arrow_back</mat-icon>
-        <a [routerLink]="['/']"><h1>{{title}}</h1></a>
+        <a [routerLink]="['/']">
+            <mat-icon *ngIf="arrow">arrow_back</mat-icon>
+        </a>
+        <a [routerLink]="['/']">
+            <h1>{{title}}</h1>
+        </a>
     </mat-toolbar>
 </nav>
