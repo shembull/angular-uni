@@ -37,41 +37,22 @@ export class UserAddComponent implements OnInit {
         Validators.pattern(/^[+]\d\d+/)
     ]);
     matcher = new UserErrorStateMatcher();
-    constructor(
-        private firebaseService: FirebaseService
-    ) { }
+    constructor() { }
     ngOnInit() { }
-    addUser(comp: UserAddComponent): void {
-        comp.user.id = User.getID(comp.user);
-        comp.userAdded.emit(comp.user);
-        comp.user = {
+    addUser(): void {
+        this.user.id = User.getID(this.user);
+        this.userAdded.emit(this.user);
+        this.user = {
             fname: '',
             id: '',
             lname: '',
             mail: '',
             phone: '',
         };
-    }
-    async changeUserButFunc(user: UserInterface): Promise<void> {
-        this.user = await this.firebaseService.getUser(user.id);
-        this.button.action = 'Ändern';
-        this.button.func = this.updateUser;
-    }
-    updateUser(comp: UserAddComponent): void {
-        comp.firebaseService.updateUser(comp.user);
-        comp.user = {
-            fname: '',
-            id: '',
-            lname: '',
-            phone: '',
-            mail: '',
-        };
-        comp.button.action = 'Hinzufügen';
-        comp.button.func = comp.addUser;
-    }
-
-    log(event) {
-        console.log(event);
+        this.fnameFormControl.reset();
+        this.lnameFormControl.reset();
+        this.mailFormControl.reset();
+        this.phoneFormControl.reset();
     }
 }
 

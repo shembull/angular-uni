@@ -21,6 +21,7 @@ export class StartComponent implements OnInit {
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
     cssClassContent;
     loadingCircle: boolean;
+    moreThanTenUsers: boolean;
 
     constructor(
         private router: Router,
@@ -58,19 +59,15 @@ export class StartComponent implements OnInit {
         let successUserAdd: boolean;
         successUserAdd = await this.firebaseService.addUser(user);
         if (!successUserAdd) {
-            this.snackBar.open('Der Benutzer existiert bereits!', 'Ok', {duration: 10000});
-            // alert('Der Benutzer existiert bereits!');
+            this.snackBar.open('Der Benutzer existiert bereits!', 'Ok', {duration: 5000});
         }
-    }
-    changeUserBut(user: UserInterface) {
-        this.child.changeUserButFunc(user);
     }
 
     filter(value: string) {
         this.dbUserArray.filter = value.trim().toLocaleLowerCase();
     }
 
-    log(value: any): void {
-        console.log(value);
+    deleteUser(user: UserInterface): void {
+        return this.firebaseService.deleteUser(user.id);
     }
 }
