@@ -16,7 +16,16 @@
                     <div class="user-phone-card">
                         <mat-card>
                             <mat-card-title>
-                                Telefon
+                                <div class="mat-card-title-text">
+                                    Telefon
+                                </div>
+                                <div class="mat-card-title-icon">
+                                    <button mat-icon-button
+                                        (click)="openChangeDialog('phone')"
+                                    >
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </div>
                             </mat-card-title>
                             <mat-card-content>
                                 <mat-icon>phone</mat-icon>
@@ -26,7 +35,16 @@
                     </div>
                     <div class="user-mail"><mat-card>
                         <mat-card-title>
-                            Email
+                            <div class="mat-card-title-text">
+                                Email
+                            </div>
+                            <div class="mat-card-title-icon">
+                                <button mat-icon-button
+                                    (click)="openChangeDialog('email')"
+                                >
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </div>
                         </mat-card-title>
                         <mat-card-content>
                             <mat-icon>email</mat-icon>

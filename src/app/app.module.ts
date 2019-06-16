@@ -20,18 +20,20 @@ import { NewUserPageComponent } from './new-user-page/new-user-page.component';
 import { ParallaxDirective } from './new-user-page/parallax.directive';
 import {AngularResizedEventModule} from 'angular-resize-event';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-up.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ToolbarComponent,
-    TestComponent,
-    StartComponent,
-    UserAddComponent,
-    UserPageComponent,
-    NewUserPageComponent,
-    ParallaxDirective,
-  ],
+    declarations: [
+        AppComponent,
+        ToolbarComponent,
+        TestComponent,
+        StartComponent,
+        UserAddComponent,
+        UserPageComponent,
+        NewUserPageComponent,
+        ParallaxDirective,
+        DialogPopUpComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -47,7 +49,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         AngularResizedEventModule,
         ReactiveFormsModule,
     ],
-  providers: [DataService],
-  bootstrap: [AppComponent]
+    providers: [DataService],
+    bootstrap: [AppComponent],
+    entryComponents: [DialogPopUpComponent]
 })
 export class AppModule { }

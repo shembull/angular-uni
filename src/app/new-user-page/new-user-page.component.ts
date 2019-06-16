@@ -4,6 +4,8 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {FirebaseService} from '../services/firebase.service';
 import {ResizedEvent} from 'angular-resize-event';
 import {DataService} from '../services/data.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogPopUpComponent} from './dialog-pop-up/dialog-pop-up.component';
 
 @Component({
   selector: 'app-new-user-page',
@@ -16,11 +18,13 @@ export class NewUserPageComponent implements OnInit {
     title: string;
     user: UserInterface;
     topOffset: number;
+    private newValue: string;
 
     constructor(
         private route: ActivatedRoute,
         private firebaseService: FirebaseService,
         private dataService: DataService,
+        private dialog: MatDialog,
     ) {
         this.user = {
             fname: '',
@@ -29,6 +33,10 @@ export class NewUserPageComponent implements OnInit {
             mail: '',
             id: ''
         };
+    }
+
+    static log(el: any) {
+        console.log(el);
     }
 
     ngOnInit() {
@@ -53,7 +61,26 @@ export class NewUserPageComponent implements OnInit {
         }
     }
 
-    log(el: any) {
-        console.log(el);
+    openChangeDialog(field: string): void {
+        const dialogRef = this.dialog.open(DialogPopUpComponent, {
+            width: '250px',
+            data: {name: this.user.fname, newValue: '', field}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.newValue = result;
+            if (this.newValue !== undefined) {
+                switch (field) {
+                    case 'phone':
+                        this.user.phone = this.newValue;
+                        this.firebaseService.updateUser(this.user);
+                        break;
+                    case 'email':
+                        this.user.mail = this.newValue;
+                        this.firebaseService.updateUser(this.user);
+                        break;
+                }
+            }
+        });
     }
 }

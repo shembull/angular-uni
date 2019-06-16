@@ -87,4 +87,14 @@ mat-card-content {
     height: 8px;
 }
 
+.mat-card-title-text {
+    display: inline-flex;
+    justify-content: left;
+    width: 90%;
+}
 
+.mat-card-title-icon {
+    display: inline-flex;
+    justify-content: right;
+    width: 10%;
+}

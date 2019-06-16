@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Hey {{data.name}}</h1>
+<div mat-dialog-content>
+    <p>Gib hier den neuen Wert ein</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.newValue"
+            [formControl]="getFormControl()"
+            [errorStateMatcher]="matcher"
+        >
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Nö</button>
+    <button mat-button
+            [mat-dialog-close]="data.newValue"
+            [disabled]="getFormControl().hasError('required') || getFormControl().hasError('pattern') || getFormControl().hasError('email')"
+    >
+        Alles klar
+    </button>
+</div>
