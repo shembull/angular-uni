@@ -9,6 +9,8 @@
             #userMail
             [errorStateMatcher]="matcher"
             [formControl]="emailFormControl"
+            (keydown.enter)="buttonLogin._elementRef.nativeElement.click()"
+            (keydown)="setWrongPassword(false)"
         >
         <mat-hint>
             Verpflichtend
@@ -28,15 +30,17 @@
             #userPW
             [errorStateMatcher]="matcher"
             [formControl]="passwordFormControl"
+            (keydown.enter)="buttonLogin._elementRef.nativeElement.click()"
+            (keydown)="setWrongPassword(false)"
         >
         <mat-hint>
             Verpflichtend
         </mat-hint>
+        <mat-error *ngIf="passwordState()">
+            Falsches Passwort
+        </mat-error>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
             Verpflichtend
-        </mat-error>
-        <mat-error *ngIf="passwordFormControl.hasError('compose')">
-            Falsches Passwort
         </mat-error>
     </mat-form-field>
 </div>
@@ -49,8 +53,9 @@
     </button>
     <button
         mat-button
+        #buttonLogin
         (click)="login(userMail.value, userPW.value)"
-        [disabled]="passwordFormControl.hasError('required') || emailFormControl.hasError('required') || emailFormControl.hasError('email')"
+        [disabled]="passwordFormControl.hasError('required') || emailFormControl.hasError('required') || emailFormControl.hasError('email') || passwordState()"
     >
         Login
     </button>

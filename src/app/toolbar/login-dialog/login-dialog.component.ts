@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {AuthService} from '../../services/auth.service';
 import {UserErrorStateMatcher} from '../../start/user-add/user-add.component';
 import {FormControl, Validators} from '@angular/forms';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -10,6 +11,8 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login-dialog.component.css']
 })
 export class LoginDialogComponent implements OnInit {
+
+    wrongPassword: boolean;
     emailFormControl = new FormControl('', [
         Validators.email,
         Validators.required,
@@ -22,6 +25,9 @@ export class LoginDialogComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<LoginDialogComponent>,
         private authService: AuthService,
+        private dataService: DataService,
+        private snackBar: MatSnackBar,
+        private vc: ViewContainerRef,
     ) {}
 
     closeDialog(): void {
@@ -33,12 +39,23 @@ export class LoginDialogComponent implements OnInit {
             if (res) {
                 this.dialogRef.close();
             } else {
-                alert('Passwort ist falsch');
+                this.setWrongPassword(true);
+                this.snackBar.open('Falsches Passwort', 'OK', {politeness: 'off', duration: 5000, viewContainerRef: this.vc});
             }
         });
     }
 
     ngOnInit() {
+        this.dataService.password.subscribe(state => {
+            this.wrongPassword = state;
+        });
     }
 
+    setWrongPassword(b: boolean) {
+        this.dataService.setPassword(b);
+    }
+
+    passwordState(): boolean {
+        return this.wrongPassword;
+    }
 }
