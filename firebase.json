@@ -6,6 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+      "site": "telefonbuch-angular",
     "rewrites": [
       {
         "source": "**",
