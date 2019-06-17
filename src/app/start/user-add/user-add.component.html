@@ -36,10 +36,10 @@
             type="email"
             placeholder="Email"
             [(ngModel)]="user.mail"
-            [formControl]="mailFormControl"
+            [formControl]="emailFormControl"
             [errorStateMatcher]="matcher"
         >
-        <mat-error *ngIf="mailFormControl.hasError('email')">
+        <mat-error *ngIf="emailFormControl.hasError('email')">
             Das Format der Email stimmt nicht
         </mat-error>
     </mat-form-field>
@@ -68,7 +68,7 @@
         color="primary"
         [disabled]="fnameFormControl.hasError('required') ||
         lnameFormControl.hasError('required') ||
-        mailFormControl.hasError('email') ||
+        emailFormControl.hasError('email') ||
         phoneFormControl.hasError('required') ||
         phoneFormControl.hasError('pattern')"
         (click)="addUser()"

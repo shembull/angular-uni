@@ -3,7 +3,6 @@ import {UserInterface} from '../../interfaces/user-interface';
 import {User} from '../../classes/user';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
-import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-add',
@@ -29,7 +28,7 @@ export class UserAddComponent implements OnInit {
     lnameFormControl = new FormControl('', [
         Validators.required,
     ]);
-    mailFormControl = new FormControl('', [
+    emailFormControl = new FormControl('', [
         Validators.email,
     ]);
     phoneFormControl = new FormControl('', [
@@ -51,7 +50,7 @@ export class UserAddComponent implements OnInit {
         };
         this.fnameFormControl.reset();
         this.lnameFormControl.reset();
-        this.mailFormControl.reset();
+        this.emailFormControl.reset();
         this.phoneFormControl.reset();
     }
 }
