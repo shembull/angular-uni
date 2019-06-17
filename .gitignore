@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 # API Keys
-/src/enviroments/.firebase.config.ts
+/src/environments/.firebase.config.ts
