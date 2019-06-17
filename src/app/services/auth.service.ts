@@ -29,7 +29,7 @@ export class AuthService {
         });
     }
 
-    static get isLoggedIn(): boolean {
+    get isLoggedIn(): boolean {
         const  user  =  JSON.parse(localStorage.getItem('user'));
         return  user  !==  null;
     }
@@ -38,8 +38,10 @@ export class AuthService {
         try {
             await this.afAuth.auth.signInWithEmailAndPassword(email, password);
             this.loginStateSubject.next(true);
+            console.log('Logged in');
             return true;
         } catch (e) {
+            console.log('Not logged in');
             return false;
         }
     }
