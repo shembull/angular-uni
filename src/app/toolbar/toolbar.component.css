@@ -14,3 +14,8 @@
     color: white;
     text-decoration: none;
 }
+
+.toolbar-title mat-icon {
+    padding-top: 4px;
+    margin-right: 2px;
+}
