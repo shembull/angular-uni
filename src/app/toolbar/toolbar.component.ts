@@ -14,7 +14,7 @@ export class ToolbarComponent implements OnInit {
     arrow: boolean;
     constructor(
       private dataService: DataService,
-      private authService: AuthService,
+      public authService: AuthService,
       private dialog: MatDialog,
     ) {}
 

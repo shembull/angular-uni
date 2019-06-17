@@ -25,7 +25,7 @@ export class StartComponent implements OnInit {
             ['fname', 'lname', 'actions'],
         ]
     ];
-    private displayedColumns: string[];
+    displayedColumns: string[];
     data;
     @ViewChild(UserAddComponent, {static: true}) child;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -39,7 +39,7 @@ export class StartComponent implements OnInit {
         private route: ActivatedRoute,
         private dataService: DataService,
         private firebaseService: FirebaseService,
-        private authService: AuthService,
+        public authService: AuthService,
         private snackBar: MatSnackBar
     ) { }
 

@@ -25,7 +25,7 @@ export class NewUserPageComponent implements OnInit {
         private route: ActivatedRoute,
         private firebaseService: FirebaseService,
         private dataService: DataService,
-        private authService: AuthService,
+        public authService: AuthService,
         private dialog: MatDialog,
     ) {
         this.user = {
