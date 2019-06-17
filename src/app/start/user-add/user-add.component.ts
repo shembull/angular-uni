@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserInterface} from '../../interfaces/user-interface';
 import {User} from '../../classes/user';
-import {FirebaseService} from '../../services/firebase.service';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-add',

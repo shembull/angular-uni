@@ -1,4 +1,16 @@
-a {
+.toolbar-title {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.toolbar-auth-option {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toolbar-title a{
     color: white;
     text-decoration: none;
 }

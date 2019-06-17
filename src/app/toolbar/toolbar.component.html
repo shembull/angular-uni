@@ -1,10 +1,28 @@
 <nav>
     <mat-toolbar color="primary" class="mat-elevation-z5">
-        <a [routerLink]="['/']">
-            <mat-icon *ngIf="arrow">arrow_back</mat-icon>
-        </a>
-        <a [routerLink]="['/']">
-            <h1>{{title}}</h1>
-        </a>
+        <div class="toolbar-title">
+            <a [routerLink]="['/']">
+                <mat-icon *ngIf="arrow">arrow_back</mat-icon>
+            </a>
+            <a [routerLink]="['/']">
+                <h1>{{title}}</h1>
+            </a>
+        </div>
+        <div class="toolbar-auth-option">
+            <button
+                mat-flat-button
+                *ngIf="authService.isLoggedIn"
+                (click)="authService.logout()"
+            >
+                Logout
+            </button>
+            <button
+                mat-flat-button
+                *ngIf="!authService.isLoggedIn"
+                (click)="openLoginDialog()"
+            >
+                Login
+            </button>
+        </div>
     </mat-toolbar>
 </nav>

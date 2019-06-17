@@ -21,6 +21,7 @@ import { ParallaxDirective } from './new-user-page/parallax.directive';
 import {AngularResizedEventModule} from 'angular-resize-event';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-up.component';
+import { LoginDialogComponent } from './toolbar/login-dialog/login-dialog.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-u
         NewUserPageComponent,
         ParallaxDirective,
         DialogPopUpComponent,
+        LoginDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -51,6 +53,9 @@ import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-u
     ],
     providers: [DataService],
     bootstrap: [AppComponent],
-    entryComponents: [DialogPopUpComponent]
+    entryComponents: [
+        DialogPopUpComponent,
+        LoginDialogComponent,
+    ]
 })
 export class AppModule { }

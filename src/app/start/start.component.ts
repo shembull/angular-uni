@@ -5,6 +5,7 @@ import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/m
 import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 import {UserAddComponent} from './user-add/user-add.component';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-new-start',
@@ -28,6 +29,7 @@ export class StartComponent implements OnInit {
         private route: ActivatedRoute,
         private dataService: DataService,
         private firebaseService: FirebaseService,
+        private authService: AuthService,
         private snackBar: MatSnackBar
     ) { }
 
@@ -54,6 +56,14 @@ export class StartComponent implements OnInit {
             this.cssClassContent = 'show';
         });
         this.dbUserArray.sort = this.sort;
+
+        this.authService.loginState.subscribe(state => {
+            if (state) {
+                this.displayedColumns = ['fname', 'lname', 'mail', 'phone', 'actions'];
+            } else {
+                this.displayedColumns = ['fname', 'lname', 'mail', 'phone'];
+            }
+        });
     }
     async addUser(user: UserInterface): Promise<void> {
         let successUserAdd: boolean;

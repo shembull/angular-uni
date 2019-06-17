@@ -20,8 +20,10 @@
                                     Telefon
                                 </div>
                                 <div class="mat-card-title-icon">
-                                    <button mat-icon-button
+                                    <button
+                                        mat-icon-button
                                         (click)="openChangeDialog('phone')"
+                                        *ngIf="authService.isLoggedIn"
                                     >
                                         <mat-icon>edit</mat-icon>
                                     </button>
@@ -39,8 +41,10 @@
                                 Email
                             </div>
                             <div class="mat-card-title-icon">
-                                <button mat-icon-button
+                                <button
+                                    mat-icon-button
                                     (click)="openChangeDialog('email')"
+                                    *ngIf="authService.isLoggedIn"
                                 >
                                     <mat-icon>edit</mat-icon>
                                 </button>

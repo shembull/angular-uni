@@ -6,6 +6,7 @@ import {ResizedEvent} from 'angular-resize-event';
 import {DataService} from '../services/data.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogPopUpComponent} from './dialog-pop-up/dialog-pop-up.component';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-new-user-page',
@@ -24,6 +25,7 @@ export class NewUserPageComponent implements OnInit {
         private route: ActivatedRoute,
         private firebaseService: FirebaseService,
         private dataService: DataService,
+        private authService: AuthService,
         private dialog: MatDialog,
     ) {
         this.user = {

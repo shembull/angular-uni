@@ -48,7 +48,10 @@
     </div>
 
     <div class="user-add-comp">
-        <app-user-add (userAdded)="addUser($event)"></app-user-add>
+        <app-user-add
+            (userAdded)="addUser($event)"
+            *ngIf="authService.isLoggedIn"
+        ></app-user-add>
     </div>
 </div>
 <div class="loading-animation" fxLayoutAlign="center" *ngIf="loadingCircle">
