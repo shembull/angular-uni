@@ -6,6 +6,7 @@ import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 import {UserAddComponent} from './user-add/user-add.component';
 import {AuthService} from '../services/auth.service';
+import {ResizedEvent} from 'angular-resize-event';
 
 @Component({
   selector: 'app-new-start',
@@ -15,7 +16,16 @@ import {AuthService} from '../services/auth.service';
 export class StartComponent implements OnInit {
     myParam: string;
     dbUserArray: MatTableDataSource<UserInterface> = new MatTableDataSource<UserInterface>();
-    displayedColumns: string[] = ['fname', 'lname', 'mail', 'phone', 'actions'];
+    columns: string[][][] = [
+        [
+            ['fname', 'lname', 'mail', 'phone'],
+            ['fname', 'lname', 'mail', 'phone', 'actions'],
+        ], [
+            ['fname', 'lname'],
+            ['fname', 'lname', 'actions'],
+        ]
+    ];
+    private displayedColumns: string[];
     data;
     @ViewChild(UserAddComponent, {static: true}) child;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -34,6 +44,8 @@ export class StartComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.updateDisplayedColumns();
+
         this.cssClassContent = 'hide';
         this.loadingCircle = true;
         this.dbUserArray.paginator = this.paginator;
@@ -58,11 +70,13 @@ export class StartComponent implements OnInit {
         this.dbUserArray.sort = this.sort;
 
         this.authService.loginState.subscribe(state => {
-            if (state) {
-                this.displayedColumns = ['fname', 'lname', 'mail', 'phone', 'actions'];
-            } else {
-                this.displayedColumns = ['fname', 'lname', 'mail', 'phone'];
-            }
+            this.dataService.windowInnerWidth.subscribe( size => {
+                if (state) {
+                    this.displayedColumns = this.columns[size][1];
+                } else {
+                    this.displayedColumns = this.columns[size][0];
+                }
+            });
         });
     }
     async addUser(user: UserInterface): Promise<void> {
@@ -79,5 +93,9 @@ export class StartComponent implements OnInit {
 
     deleteUser(user: UserInterface): void {
         return this.firebaseService.deleteUser(user.id);
+    }
+
+    updateDisplayedColumns(): void {
+        this.dataService.changeWindowSize(window.innerWidth);
     }
 }

@@ -8,7 +8,7 @@
         </mat-form-field>
     </div>
 
-    <div class="user-table">
+    <div class="user-table" (resized)="updateDisplayedColumns()">
         <table mat-table matSort
                matSortActive="fname" matSortDisableClear matSortDirection="asc"
                [dataSource]="dbUserArray"

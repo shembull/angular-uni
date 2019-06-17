@@ -16,10 +16,12 @@ export class DataService {
     );
     private toolbarHeaderSubject = new BehaviorSubject<string>('Telefonbuch');
     private backIconActiveSubject = new BehaviorSubject<boolean>(false);
+    private windowInnerWidthSubject = new BehaviorSubject<number>(1);
 
     people: Observable<User[]> = this.peopleSubject.asObservable();
     toolbarHeader: Observable<string> = this.toolbarHeaderSubject.asObservable();
     backIconActive: Observable<boolean> = this.backIconActiveSubject.asObservable();
+    windowInnerWidth: Observable<number> = this.windowInnerWidthSubject.asObservable();
 
     constructor() { }
     addUser(newUsers: User[]): void {
@@ -35,5 +37,13 @@ export class DataService {
 
     activateIcon(): void {
         return this.backIconActiveSubject.next(true);
+    }
+
+    changeWindowSize(size: number): void {
+        if (size < 600) {
+            this.windowInnerWidthSubject.next(1);
+        } else {
+            this.windowInnerWidthSubject.next(0);
+        }
     }
 }
