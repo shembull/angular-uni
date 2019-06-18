@@ -1,11 +1,23 @@
-form {
+.user-add-form {
     width: 75%;
     margin-left: 12.5%;
     margin-right: 12.5%;
+    margin-bottom: 12.5%;
 }
-mat-form-field {
+.mat-form-field {
     margin: 2em;
+    width: 10em;
 }
+
+.user-add-form-title {
+    margin: 2em 0 0 2em;
+    padding-top: 2em;
+}
+
+.user-add-form-title h3{
+    margin: 0;
+}
+
 button {
     margin: 2em;
 }

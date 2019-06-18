@@ -1,78 +1,85 @@
-<form class="mat-form-field">
-    <mat-form-field class="user-add-form">
-        <input matInput
-               type="text"
-               placeholder="Vorname"
-               [(ngModel)]="user.fname"
-               [formControl]="fnameFormControl"
-               [errorStateMatcher]="matcher"
-        >
-        <mat-hint>
-            Verpflichtend
-        </mat-hint>
-        <mat-error *ngIf="fnameFormControl.hasError('required')">
-            Der Vorname ist <strong>verpflichtend</strong>
-        </mat-error>
-    </mat-form-field>
+<div class="user-add-form mat-elevation-z8">
+    <div class="user-add-form-title">
+        <h3 mat-card-title>Benutzer hinzufügen</h3>
+    </div>
+    <div>
+        <form>
+            <mat-form-field class="user-add-form">
+                <input matInput
+                       type="text"
+                       placeholder="Vorname"
+                       [(ngModel)]="user.fname"
+                       [formControl]="fnameFormControl"
+                       [errorStateMatcher]="matcher"
+                >
+                <mat-hint>
+                    Verpflichtend
+                </mat-hint>
+                <mat-error *ngIf="fnameFormControl.hasError('required')">
+                    Der Vorname ist <strong>verpflichtend</strong>
+                </mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="user-add-form">
-        <input matInput
-               type="text"
-               placeholder="Nachname"
-               [(ngModel)]="user.lname"
-               [formControl]="lnameFormControl"
-               [errorStateMatcher]="matcher"
-        >
-        <mat-hint>
-            Verpflichtend
-        </mat-hint>
-        <mat-error *ngIf="lnameFormControl.hasError('required')">
-            Der Nachname ist <strong>verpflichtend</strong>
-        </mat-error>
-    </mat-form-field>
+            <mat-form-field class="user-add-form">
+                <input matInput
+                       type="text"
+                       placeholder="Nachname"
+                       [(ngModel)]="user.lname"
+                       [formControl]="lnameFormControl"
+                       [errorStateMatcher]="matcher"
+                >
+                <mat-hint>
+                    Verpflichtend
+                </mat-hint>
+                <mat-error *ngIf="lnameFormControl.hasError('required')">
+                    Der Nachname ist <strong>verpflichtend</strong>
+                </mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="user-add-form" >
-        <input matInput
-            type="email"
-            placeholder="Email"
-            [(ngModel)]="user.mail"
-            [formControl]="emailFormControl"
-            [errorStateMatcher]="matcher"
-        >
-        <mat-error *ngIf="emailFormControl.hasError('email')">
-            Das Format der Email stimmt nicht
-        </mat-error>
-    </mat-form-field>
+            <mat-form-field class="user-add-form" >
+                <input matInput
+                       type="email"
+                       placeholder="Email"
+                       [(ngModel)]="user.mail"
+                       [formControl]="emailFormControl"
+                       [errorStateMatcher]="matcher"
+                >
+                <mat-error *ngIf="emailFormControl.hasError('email')">
+                    Das Format der Email stimmt nicht
+                </mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="user-add-form">
-        <input matInput
-           type="tel"
-           placeholder="Telefon"
-           [(ngModel)]="user.phone"
-           [formControl]="phoneFormControl"
-           [errorStateMatcher]="matcher"
-        >
-        <mat-hint>
-            Verpflichtend
-        </mat-hint>
-        <mat-error *ngIf="phoneFormControl.hasError('required')">
-            Die Telefonnummer ist <strong>verpflichtend</strong>
-        </mat-error>
-        <mat-error *ngIf="phoneFormControl.hasError('pattern')">
-            Die Telefonnummer muss dem Format "+49..." entsprechen
-        </mat-error>
-    </mat-form-field>
+            <mat-form-field class="user-add-form">
+                <input matInput
+                       type="tel"
+                       placeholder="Telefon"
+                       [(ngModel)]="user.phone"
+                       [formControl]="phoneFormControl"
+                       [errorStateMatcher]="matcher"
+                >
+                <mat-hint>
+                    Verpflichtend
+                </mat-hint>
+                <mat-error *ngIf="phoneFormControl.hasError('required')">
+                    Die Telefonnummer ist <strong>verpflichtend</strong>
+                </mat-error>
+                <mat-error *ngIf="phoneFormControl.hasError('pattern')">
+                    Die Telefonnummer muss dem Format "+49..." entsprechen
+                </mat-error>
+            </mat-form-field>
 
-    <button type="submit"
-        mat-raised-button
-        color="primary"
-        [disabled]="fnameFormControl.hasError('required') ||
+            <button type="submit"
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="fnameFormControl.hasError('required') ||
         lnameFormControl.hasError('required') ||
         emailFormControl.hasError('email') ||
         phoneFormControl.hasError('required') ||
         phoneFormControl.hasError('pattern')"
-        (click)="addUser()"
-    >
-        {{button.action}}
-    </button>
-</form>
+                    (click)="addUser()"
+            >
+                {{button.action}}
+            </button>
+        </form>
+    </div>
+</div>
