@@ -17,11 +17,13 @@ export class DataService {
     private toolbarHeaderSubject = new BehaviorSubject<string>('Telefonbuch');
     private backIconActiveSubject = new BehaviorSubject<boolean>(false);
     private windowInnerWidthSubject = new BehaviorSubject<number>(1);
+    private passwordSubject = new BehaviorSubject<boolean>(false);
 
     people: Observable<User[]> = this.peopleSubject.asObservable();
     toolbarHeader: Observable<string> = this.toolbarHeaderSubject.asObservable();
     backIconActive: Observable<boolean> = this.backIconActiveSubject.asObservable();
     windowInnerWidth: Observable<number> = this.windowInnerWidthSubject.asObservable();
+    password: Observable<boolean> = this.passwordSubject.asObservable();
 
     constructor() { }
     addUser(newUsers: User[]): void {
@@ -45,5 +47,9 @@ export class DataService {
         } else {
             this.windowInnerWidthSubject.next(0);
         }
+    }
+
+    setPassword(b: boolean): void {
+        this.passwordSubject.next(b);
     }
 }

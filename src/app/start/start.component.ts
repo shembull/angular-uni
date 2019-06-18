@@ -6,7 +6,6 @@ import {FirebaseService} from '../services/firebase.service';
 import {UserInterface} from '../interfaces/user-interface';
 import {UserAddComponent} from './user-add/user-add.component';
 import {AuthService} from '../services/auth.service';
-import {ResizedEvent} from 'angular-resize-event';
 
 @Component({
   selector: 'app-new-start',
