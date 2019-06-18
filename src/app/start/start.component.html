@@ -2,9 +2,12 @@
 <div class="main-content" [ngClass]="cssClassContent">
     <div fxLayoutAlign="center center">
         <mat-form-field fxFlex="30%">
-            <label>
-                <input matInput type="text" (keyup)="filter($event.target.value)" placeholder="Filter">
-            </label>
+            <mat-placeholder>
+                <mat-icon>
+                    search
+                </mat-icon>
+            </mat-placeholder>
+            <input matInput type="text" (keyup)="filter($event.target.value)">
         </mat-form-field>
     </div>
 
