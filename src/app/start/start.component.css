@@ -1,7 +1,6 @@
 .user-table {
     width: 75%;
     margin-left: 12.5%;
-    margin-top: 2em;
     margin-bottom: 2em;
 }
 
@@ -31,4 +30,26 @@ button {
 }
 .hide {
     display: none;
+}
+
+.user-name {
+    display: flex;
+    justify-content: left;
+    padding-left: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.header {
+    margin-top: 64px;
+    width: 100%;
+    background-color: rgb(103, 58, 183);
+}
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
