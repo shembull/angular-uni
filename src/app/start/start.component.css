@@ -53,3 +53,11 @@ button {
     left: 0;
     width: 100%;
 }
+
+@media (max-width: 599px) {
+    .header {
+        margin-top: 56px;
+        width: 100%;
+        background-color: rgb(103, 58, 183);
+    }
+}
