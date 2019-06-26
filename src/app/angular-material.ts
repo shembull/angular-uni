@@ -7,7 +7,11 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatTabsModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -26,7 +30,11 @@ import {FormsModule} from '@angular/forms';
         MatInputModule,
         MatCardModule,
         MatSnackBarModule,
-        MatDialogModule
+        MatDialogModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatSortModule,
+        MatTabsModule
     ],
     exports: [
         MatButtonModule,
@@ -42,6 +50,10 @@ import {FormsModule} from '@angular/forms';
         MatCardModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        MatSortModule,
+        MatTabsModule
     ],
 })
 export class MaterialModule { }

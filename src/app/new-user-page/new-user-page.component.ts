@@ -43,6 +43,7 @@ export class NewUserPageComponent implements OnInit {
 
     ngOnInit() {
         this.innerWidth = window.innerWidth;
+        window.scrollTo(0, 0);
 
         this.route.params.subscribe(
             (params: Params) => {
@@ -65,7 +66,7 @@ export class NewUserPageComponent implements OnInit {
 
     openChangeDialog(field: string): void {
         const dialogRef = this.dialog.open(DialogPopUpComponent, {
-            width: '250px',
+            width: '300px',
             data: {name: this.user.fname, newValue: '', field}
         });
 
