@@ -28,6 +28,7 @@ import {AngularResizedEventModule} from 'angular-resize-event';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-up.component';
 import { LoginDialogComponent } from './toolbar/login-dialog/login-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { LoginDialogComponent } from './toolbar/login-dialog/login-dialog.compon
         AngularResizedEventModule,
         ReactiveFormsModule,
         MatExpansionModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
     providers: [
         DataService,
