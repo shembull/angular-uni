@@ -1,7 +1,6 @@
 .user-table {
     width: 75%;
     margin-left: 12.5%;
-    margin-top: 2em;
     margin-bottom: 2em;
 }
 
@@ -12,7 +11,12 @@
 button {
     margin-right: 1em;
 }
-.add-pointer {
+.tr-data {
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.tr-data:hover {
+    background-color: #f5f5f5;
     cursor: pointer;
 }
 .loading-animation {
@@ -26,4 +30,34 @@ button {
 }
 .hide {
     display: none;
+}
+
+.user-name {
+    display: flex;
+    justify-content: left;
+    padding-left: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.header {
+    margin-top: 64px;
+    width: 100%;
+    background-color: rgb(103, 58, 183);
+}
+
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+@media (max-width: 599px) {
+    .header {
+        margin-top: 56px;
+        width: 100%;
+        background-color: rgb(103, 58, 183);
+    }
 }

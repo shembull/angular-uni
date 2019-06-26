@@ -3,6 +3,7 @@
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
+The file '.firebase.config.ts' needs to be added in /src/environments with a valid API key to access your Firestore DB.
 
 ## Development server
 

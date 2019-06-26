@@ -42,7 +42,7 @@ export class DataService {
     }
 
     changeWindowSize(size: number): void {
-        if (size < 600) {
+        if (size < 720) {
             this.windowInnerWidthSubject.next(1);
         } else {
             this.windowInnerWidthSubject.next(0);

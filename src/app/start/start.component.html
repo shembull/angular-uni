@@ -1,36 +1,46 @@
-<app-toolbar></app-toolbar>
-<div class="main-content" [ngClass]="cssClassContent">
+<div class="header">
+    <div class="user-name">
+        <p>
+            Benutzerliste
+        </p>
+    </div>
+</div>
+<div class="main-content" [ngClass]="cssClassContent" >
     <div fxLayoutAlign="center center">
         <mat-form-field fxFlex="30%">
-            <label>
-                <input matInput type="text" (keyup)="filter($event.target.value)" placeholder="Filter">
-            </label>
+            <mat-placeholder>
+                <mat-icon>
+                    search
+                </mat-icon>
+            </mat-placeholder>
+            <input matInput type="text" (keyup)="filter($event.target.value)">
         </mat-form-field>
     </div>
 
     <div class="user-table" (resized)="updateDisplayedColumns()">
-        <table mat-table matSort
+        <table mat-table
+               matSort
                matSortActive="fname" matSortDisableClear matSortDirection="asc"
                [dataSource]="dbUserArray"
                class="mat-elevation-z10">
             <ng-container matColumnDef="fname">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
+                <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.fname}} </td>
             </ng-container>
 
             <ng-container matColumnDef="lname">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
+                <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.lname}} </td>
             </ng-container>
 
             <ng-container matColumnDef="mail">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
+                <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.mail}} </td>
             </ng-container>
 
             <ng-container matColumnDef="phone">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefon </th>
-                <td mat-cell class="mat-tab-link add-pointer" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
+                <td mat-cell class="mat-tab-link" *matCellDef="let user" [routerLink]="['/user', user.id]"> {{user.phone}} </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">
@@ -41,7 +51,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns; let user"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let user" class="tr-data"></tr>
         </table>
 
         <mat-paginator [disabled]="moreThanTenUsers" [pageSizeOptions]="[10, 50, 100]"></mat-paginator>
@@ -57,3 +67,4 @@
 <div class="loading-animation" fxLayoutAlign="center" *ngIf="loadingCircle">
     <mat-spinner></mat-spinner>
 </div>
+<app-toolbar class="toolbar"></app-toolbar>
