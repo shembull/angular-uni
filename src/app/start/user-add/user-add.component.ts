@@ -35,23 +35,23 @@ export class UserAddComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[+]\d\d+/)
     ]);
+    formControls: FormControl[] = [
+        this.fnameFormControl,
+        this.lnameFormControl,
+        this.emailFormControl,
+        this.phoneFormControl
+    ];
     matcher = new UserErrorStateMatcher();
     constructor() { }
     ngOnInit() { }
     addUser(): void {
+        this.user.fname = this.fnameFormControl.value;
+        this.user.lname = this.lnameFormControl.value;
+        this.user.mail = this.emailFormControl.value;
+        this.user.phone = this.phoneFormControl.value;
         this.user.id = User.getID(this.user);
         this.userAdded.emit(this.user);
-        this.user = {
-            fname: '',
-            id: '',
-            lname: '',
-            mail: '',
-            phone: '',
-        };
-        this.fnameFormControl.reset();
-        this.lnameFormControl.reset();
-        this.emailFormControl.reset();
-        this.phoneFormControl.reset();
+        this.formControls.forEach(fc => fc.reset());
     }
 }
 

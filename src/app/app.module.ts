@@ -16,7 +16,7 @@ import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NewUserPageComponent } from './new-user-page/new-user-page.component';
-import { ParallaxDirective } from './new-user-page/parallax.directive';
+import { ParallaxDirective } from './directives/parallax.directive';
 import {AngularResizedEventModule} from 'angular-resize-event';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-up.component';
