@@ -8,7 +8,6 @@
                 <input matInput
                        type="text"
                        placeholder="Vorname"
-                       [(ngModel)]="user.fname"
                        [formControl]="fnameFormControl"
                        [errorStateMatcher]="matcher"
                 >
@@ -24,7 +23,6 @@
                 <input matInput
                        type="text"
                        placeholder="Nachname"
-                       [(ngModel)]="user.lname"
                        [formControl]="lnameFormControl"
                        [errorStateMatcher]="matcher"
                 >
@@ -40,7 +38,6 @@
                 <input matInput
                        type="email"
                        placeholder="Email"
-                       [(ngModel)]="user.mail"
                        [formControl]="emailFormControl"
                        [errorStateMatcher]="matcher"
                 >
@@ -53,7 +50,6 @@
                 <input matInput
                        type="tel"
                        placeholder="Telefon"
-                       [(ngModel)]="user.phone"
                        [formControl]="phoneFormControl"
                        [errorStateMatcher]="matcher"
                 >

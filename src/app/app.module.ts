@@ -1,4 +1,4 @@
-import {BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,13 +14,6 @@ import { UserPageComponent } from './user-page/user-page.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {FirebaseModules} from './firebase-modules';
-import {
-    MatExpansionModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatTabsModule
-} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NewUserPageComponent } from './new-user-page/new-user-page.component';
 import { ParallaxDirective } from './directives/parallax.directive';
@@ -28,7 +21,6 @@ import {AngularResizedEventModule} from 'angular-resize-event';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DialogPopUpComponent } from './new-user-page/dialog-pop-up/dialog-pop-up.component';
 import { LoginDialogComponent } from './toolbar/login-dialog/login-dialog.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
     declarations: [

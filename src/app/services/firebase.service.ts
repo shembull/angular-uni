@@ -16,7 +16,7 @@ export class FirebaseService {
       this.users = db.collection<UserInterface>(config.collection_endpoint);
     }
     getUsers(): Observable<UserInterface[]> {
-      return this.db.collection<UserInterface>('users').valueChanges();
+      return this.users.valueChanges();
     }
     // Asynchronous user retrieval
     async getUser(id: string): Promise<UserInterface> {

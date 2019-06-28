@@ -6,6 +6,9 @@
             [formControl]="getFormControl()"
             [errorStateMatcher]="matcher"
         >
+        <mat-error *ngIf="getFormControl().hasError('required')"> Das Feld ist <strong>verpflichtend</strong></mat-error>
+        <mat-error *ngIf="getFormControl().hasError('email')"> Das Format passt nicht</mat-error>
+        <mat-error *ngIf="getFormControl().hasError('pattern')"> Die Nummer muss dem Format '+49...' entsprechen</mat-error>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
