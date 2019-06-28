@@ -11,7 +11,7 @@ import {
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTabsModule
+    MatTabsModule, MatExpansionModule
 } from '@angular/material';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -34,7 +34,8 @@ import {FormsModule} from '@angular/forms';
         MatPaginatorModule,
         MatProgressSpinnerModule,
         MatSortModule,
-        MatTabsModule
+        MatTabsModule,
+        MatExpansionModule,
     ],
     exports: [
         MatButtonModule,
@@ -53,7 +54,8 @@ import {FormsModule} from '@angular/forms';
         MatPaginatorModule,
         MatProgressSpinnerModule,
         MatSortModule,
-        MatTabsModule
+        MatTabsModule,
+        MatExpansionModule,
     ],
 })
 export class MaterialModule { }
